@@ -154,7 +154,7 @@ export function renderInforme(datos, analisis, opciones = {}) {
   ${seccionFaltantes(datos, analisis, t)}
 
   <footer class="foot">
-    <span>${esc(opciones.contacto || 'Gabriel Arias · gabo5612@gmail.com')}</span>
+    <span>${esc(opciones.contacto || 'Gabriel Arias · gabrielariasdev@gmail.com')}</span>
     <button type="button" class="print" onclick="print()">${esc(t.print)}</button>
   </footer>
 </main>

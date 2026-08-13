@@ -262,8 +262,8 @@
     'cta.seoButton': 'Auditoría de SEO gratis',
     'cta.seoWarranty': 'Toda comprobación fallida en verde',
     'cta.button': 'Consigue tu auditoría gratis',
-    'cta.speedMailto': 'mailto:gabo5612@gmail.com?subject=Auditor%C3%ADa%20gratuita%20de%20velocidad%20Shopify&body=URL%20de%20la%20tienda%3A%20',
-    'cta.seoMailto': 'mailto:gabo5612@gmail.com?subject=Auditor%C3%ADa%20gratuita%20de%20SEO%20Shopify&body=URL%20de%20la%20tienda%3A%20',
+    'cta.speedMailto': 'mailto:gabrielariasdev@gmail.com?subject=Auditor%C3%ADa%20gratuita%20de%20velocidad%20Shopify&body=URL%20de%20la%20tienda%3A%20',
+    'cta.seoMailto': 'mailto:gabrielariasdev@gmail.com?subject=Auditor%C3%ADa%20gratuita%20de%20SEO%20Shopify&body=URL%20de%20la%20tienda%3A%20',
     'cta.bookNote': '¿Prefieres hablarlo antes?',
     'cta.bookLink': 'Reservar 20 minutos →',
 
