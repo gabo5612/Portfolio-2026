@@ -84,12 +84,18 @@ Nada de lo demás corre hasta que esto esté.
 
 La web no se puede publicar sin esto. No es código, es criterio.
 
-- [ ] **Precio del sprint de velocidad** (hoy `€ —`, badge ámbar) · referencia del plan: €1.800–2.500
-- [ ] **Precio del sprint de SEO** (hoy `€ —`)
-- [ ] **Precio del retainer** (hoy `€ —`) · referencia del plan: €1.200–1.800/mes, mínimo 6 meses
-- [ ] **Paquete velocidad + SEO: ¿60 días en serie o 30 días?** Hoy en 60 con badge ámbar. Si baja a un mes, hay que sacar alcance de uno de los dos y escribirlo en la tarjeta, o la garantía deja de ser defendible
-- [ ] **Respuestas del FAQ** — marcadas `Placeholder.` en EN y ES, incluidas las tres nuevas de SEO
-- [ ] **Cal.com creado y enlazado** — los CTA son hoy `mailto:`
+- [x] **Precio del sprint de velocidad — $2.750.** Techo del rango del plan, en dólares: el mercado objetivo es US/UK/CA/AU al 100 %
+- [x] **Precio del sprint de SEO — $2.400.** Por debajo de velocidad pese a ser cuatro semanas contra tres: velocidad carga más riesgo (85+ es binario y el stack de apps del cliente puede impedirlo) y viene con una historia de dinero que SEO tiene prohibida
+- [x] **Precio del retainer — $1.500/mes**, mínimo 6 meses. Deliberadamente en la mitad baja del rango: el retainer es la columna vertebral y el sí del mes 2 tiene que ser fácil
+- [x] **Paquete velocidad + SEO: 50 días en serie, $5.150.** Tres semanas de velocidad más cuatro de SEO son 49 días de trabajo real, así que caben sin recortar nada y las dos garantías siguen en pie. Precio completo cada uno, sin descuento por paquete — comprimirlos es justo lo que la web dice que no hace
+- [ ] **Respuestas del FAQ** — siguen marcadas `Placeholder.` salvo `faq.a2`, reescrita con los 50 días
+
+**Descuento de cliente fundador, pendiente de decidir:** −30 % a los dos primeros a
+cambio de caso de estudio publicable y testimonio, por escrito en el contrato. Compra
+el activo que bloquea los casos 01 y 02 sin tocar la lista, que es mucho más difícil
+de subir que de bajar.
+- [x] **Cal.com creado y enlazado** — `cal.com/gabo5612/audit`. Enlace, no embed: el script de Cal.com sería un tercero en la web cuyo argumento es la velocidad. No hizo falta API key. Los CTA de auditoría siguen en `mailto:` a propósito — no son una reserva. El sitio principal de la llamada es el final del informe, vía `bin/report.js --cal`
+- [ ] **Confirmar que el evento `/audit` dura 20 minutos.** Cinco sitios del copy prometen veinte: `cta.bookLink` en las dos páginas, `report.p7`, y `t.cta` en las dos plantillas de informe. El slug ya no lo delata, pero el cliente ve la duración al reservar
 - [ ] **Verificar contra fuente primaria** el coeficiente de 0,8 % por cada 100 ms y las tres tarjetas de estadística. Es la única cifra del sistema sin procedencia real, y vive en la calculadora de la home — en un sitio cuya regla 4 es "sin fuente, no hay número"
 - [ ] **Caso de estudio 01** — captura antes, captura después, fecha de cada una
 - [ ] **Caso de estudio 02** — necesita permiso del cliente. Mientras no exista: teardown de tienda pública etiquetado como tal (`Public store teardown — unaffiliated demo`)

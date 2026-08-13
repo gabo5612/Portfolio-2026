@@ -186,7 +186,6 @@
     'plans.auditCta': 'Ver qué incluye',
     'plans.flag': 'Empieza aquí',
     'plans.sprintKind': 'Sprint de optimización',
-    'plans.priceBadge': '▲ Precio por fijar',   /* corto: el badge no debe partirse en dos líneas */
     'plans.sprintTerm': '30 días',
     'plans.sprint1': 'Tema, imágenes y scripts reconstruidos',
     'plans.sprint2': 'Core Web Vitals en verde en móvil',
@@ -248,7 +247,7 @@
     'faq.q1': '¿Cuál necesito?',
     'faq.a1': 'Placeholder. Si tienes tráfico que no convierte, empieza por velocidad. Si tienes un catálogo que Google apenas enseña, empieza por SEO. Las dos auditorías son gratis — coge la que menos claro tengas.',
     'faq.q2': '¿Puedo contratar las dos a la vez?',
-    'faq.a2': 'Placeholder. En el mismo mes no. Una sola persona con dos sprints en marcha tiene que recortar uno, y entonces ninguna garantía vale nada. Si quieres las dos, una detrás de otra.',
+    'faq.a2': 'En el mismo mes no. Una sola persona con dos sprints en marcha tiene que recortar uno, y entonces ninguna garantía vale nada. Una detrás de otra caben en 50 días — tres semanas de velocidad y luego cuatro de SEO — por $5,150, y las dos garantías siguen en pie.',
     'faq.q3': '¿Y si ya tengo un desarrollador?',
     'faq.a3': 'Placeholder. O le paso un diff priorizado y lo implementa él, o lo implemento yo y él lo revisa. Las dos funcionan, y la segunda es más rápida.',
     'faq.q4': '¿Necesitas acceso a mi tema en producción?',
@@ -265,8 +264,8 @@
     'cta.button': 'Consigue tu auditoría gratis',
     'cta.speedMailto': 'mailto:gabo5612@gmail.com?subject=Auditor%C3%ADa%20gratuita%20de%20velocidad%20Shopify&body=URL%20de%20la%20tienda%3A%20',
     'cta.seoMailto': 'mailto:gabo5612@gmail.com?subject=Auditor%C3%ADa%20gratuita%20de%20SEO%20Shopify&body=URL%20de%20la%20tienda%3A%20',
-    'cta.embed': 'Embed de Cal.com',
-    'cta.embedNote': 'Carga al interactuar o al entrar en el viewport, con dimensiones fijas para que no pueda mover el layout.',
+    'cta.bookNote': '¿Prefieres hablarlo antes?',
+    'cta.bookLink': 'Reservar 20 minutos →',
 
     'foot.speed': 'Sprint de velocidad',
     'foot.seo': 'Sprint de SEO',

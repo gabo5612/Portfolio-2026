@@ -259,16 +259,33 @@ Dark only. `color-scheme: dark` is set and there is no light palette; do not add
 The page ships several deliberate empty states, each marked in the UI with an amber `▲` badge. These are not bugs and must not be filled with invented values:
 
 - PageSpeed gauge — awaits a real build-time fetch from the PageSpeed Insights API, published with a link to the public report.
-- Sprint and retainer prices (`€ —`) — awaiting a pricing decision.
 - The three stat cards, and the case-study before/after bars — awaiting figures verified against primary sources.
 - Case study slot 02 — needs client permission, both captures, and both dates.
-- Client logos column and the Cal.com embed slot.
+- Client logos column.
 
-FAQ answers are marked `Placeholder.` in their copy and need review before launch.
+FAQ answers are marked `Placeholder.` in their copy and need review before
+launch — except `faq.a2`, which carries the real 50-day answer.
 
-The audit CTAs currently open a `mailto:` to gabo5612@gmail.com — one per
-track, with Spanish subject and body under `cta.speedMailto` /
-`cta.seoMailto`. They become the Cal.com embed once that is set up.
+**Prices are set, in USD.** Speed sprint `$2,750`, SEO sprint `$2,400`,
+retainer `$1,500/mo`. Both tracks back to back are `$5,150` over 50 days —
+three weeks of speed then four of SEO, which is 49 days of actual work, so
+neither is compressed and both guarantees survive. There is no bundle
+discount, deliberately: a discount for combining them would argue against the
+reason the site gives for not combining them. USD because the target market is
+US/UK/CA/AU; invoicing stays in EUR.
+
+**The audit CTAs stay `mailto:`** — one per track, with Spanish subject and
+body under `cta.speedMailto` / `cta.seoMailto`. They are not a booking, and
+turning them into one would contradict the promise they make (`cta.lede`:
+"arrives without a call attached").
+
+Booking is the secondary option, and it is a plain link to
+`cal.com/gabo5612/audit`, never an embed: the Cal.com script would be a
+third-party request on the page whose argument is speed, and the site makes a
+point of having none. The primary place the call is offered is the end of the
+audit report, via `bin/report.js --cal` — after the prospect has the free
+audit and its giveaway quick win in hand. `report/template.js` renders nothing
+when the flag is absent, so the report is correct either way.
 
 Two placeholders are specific to the split: the hub's dual panel shows both
 `—` for PageSpeed and `—/22` for SEO checks, and each track has one empty case

@@ -598,7 +598,6 @@ img,svg{max-width:100%}
   font-family:var(--font-mono);font-size:44px;font-weight:600;
   letter-spacing:-.03em;line-height:1;
 }
-.plan__price--empty{color:var(--ink-muted)}
 .plan__per{font-size:.4em;color:var(--ink-secondary)}
 .plan__badge{margin-top:12px}
 .plan__term{font-family:var(--font-mono);font-size:14px;color:var(--ink-secondary);margin-top:12px}
@@ -721,13 +720,15 @@ img,svg{max-width:100%}
 .cta__title{max-width:20ch}
 .cta__lede{margin:0;font-size:18px;line-height:1.6;color:var(--ink-secondary);max-width:52ch}
 .cta__warranty{display:flex;gap:12px;align-items:center;font-size:14px;color:var(--ink-secondary)}
-.embed-slot{
-  width:100%;max-width:720px;margin-top:24px;
-  border:1px dashed var(--hairline-strong);border-radius:var(--r-md);
-  padding:48px 24px;
-  display:grid;gap:8px;justify-items:center;
+/* Reservar es la opción secundaria a propósito: la principal es la auditoría
+   gratis, que llega sin llamada. Es un enlace, no un embed — el script de
+   Cal.com sería un tercero en la página cuyo argumento es la velocidad. */
+.cta__book{
+  width:100%;max-width:720px;margin-top:24px;padding-top:24px;
+  border-top:1px solid var(--hairline);
+  display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;justify-content:center;
 }
-.embed-slot__note{font-size:14px;color:var(--ink-muted);max-width:44ch;line-height:1.5}
+.cta__bookNote{font-size:14px;color:var(--ink-muted)}
 
 /* ── Core Web Vitals row (speed) ────────────────────────── */
 
