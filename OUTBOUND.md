@@ -107,7 +107,7 @@ En inglés: los compradores son US/UK/CA/AU. Cortas a propósito — un correo e
 frío que no cabe en una pantalla de móvil no se lee.
 
 Convenciones: `{tienda}` es el dominio, `{informe}` el enlace al informe
-publicado, `{loom}` el vídeo, `{cal}` es `https://cal.com/gabo5612/audit`.
+publicado, `{loom}` el vídeo, `{cal}` es `https://cal.com/gabriel-arias-dev/audit`.
 
 ### Correo 1 — el primer contacto
 

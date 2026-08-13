@@ -280,7 +280,7 @@ turning them into one would contradict the promise they make (`cta.lede`:
 "arrives without a call attached").
 
 Booking is the secondary option, and it is a plain link to
-`cal.com/gabo5612/audit`, never an embed: the Cal.com script would be a
+`cal.com/gabriel-arias-dev/audit`, never an embed: the Cal.com script would be a
 third-party request on the page whose argument is speed, and the site makes a
 point of having none. The primary place the call is offered is the end of the
 audit report, via `bin/report.js --cal` — after the prospect has the free

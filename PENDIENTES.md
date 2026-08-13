@@ -73,7 +73,7 @@ Nada de lo demás corre hasta que esto esté.
 - [x] Clave en `.env` local + `.env` en `.gitignore` (líneas 11–13) — **y ahora además se carga**, ver sesión del 13 de agosto
 - [x] Secret `PAGESPEED_API_KEY` en GitHub → Settings → Secrets → Actions
 - [x] `.github/workflows/audit-batch.yml` inyecta `PAGESPEED_API_KEY` y `CRUX_API_KEY` en el `env:` del step (líneas 59–60)
-- [ ] **Commitear.** 8 commits en el repo — la nota de "un único commit inicial" era vieja. Hoy quedan sin commitear: `src/env.js`, `bin/audit.js`, `bin/batch.js`, `PENDIENTES.md`
+- [x] **Commitear y empujar.** La nota de "un único commit inicial" era vieja. La sesión del 13 de agosto añade cinco commits, todos en `main` y empujados
 - [x] **Remoto resuelto:** `origin` → `github.com/gabo5612/Portfolio-2026.git`
 - [ ] **Correr el motor contra 3 tiendas reales — 1 de 3.** `naturvet.com` hecha. Faltan dos, y conviene que sean de tema y tamaño distintos
 - [ ] **Comprar el dominio.** Sin dominio no hay informe con link, ni Resend, ni email que no acabe en spam ← **único bloqueante duro que queda**
@@ -90,16 +90,17 @@ La web no se puede publicar sin esto. No es código, es criterio.
 - [x] **Paquete velocidad + SEO: 50 días en serie, $5.150.** Tres semanas de velocidad más cuatro de SEO son 49 días de trabajo real, así que caben sin recortar nada y las dos garantías siguen en pie. Precio completo cada uno, sin descuento por paquete — comprimirlos es justo lo que la web dice que no hace
 - [ ] **Respuestas del FAQ** — siguen marcadas `Placeholder.` salvo `faq.a2`, reescrita con los 50 días
 
-**Descuento de cliente fundador, pendiente de decidir:** −30 % a los dos primeros a
-cambio de caso de estudio publicable y testimonio, por escrito en el contrato. Compra
-el activo que bloquea los casos 01 y 02 sin tocar la lista, que es mucho más difícil
-de subir que de bajar.
-- [x] **Cal.com creado y enlazado** — `cal.com/gabo5612/audit`. Enlace, no embed: el script de Cal.com sería un tercero en la web cuyo argumento es la velocidad. No hizo falta API key. Los CTA de auditoría siguen en `mailto:` a propósito — no son una reserva. El sitio principal de la llamada es el final del informe, vía `bin/report.js --cal`
+- [x] **Cal.com creado y enlazado** — `cal.com/gabriel-arias-dev/audit`. Enlace, no embed: el script de Cal.com sería un tercero en la web cuyo argumento es la velocidad. No hizo falta API key. Los CTA de auditoría siguen en `mailto:` a propósito — no son una reserva. El sitio principal de la llamada es el final del informe, vía `bin/report.js --cal`
 - [ ] **Confirmar que el evento `/audit` dura 20 minutos.** Cinco sitios del copy prometen veinte: `cta.bookLink` en las dos páginas, `report.p7`, y `t.cta` en las dos plantillas de informe. El slug ya no lo delata, pero el cliente ve la duración al reservar
 - [ ] **Verificar contra fuente primaria** el coeficiente de 0,8 % por cada 100 ms y las tres tarjetas de estadística. Es la única cifra del sistema sin procedencia real, y vive en la calculadora de la home — en un sitio cuya regla 4 es "sin fuente, no hay número"
 - [ ] **Caso de estudio 01** — captura antes, captura después, fecha de cada una
 - [ ] **Caso de estudio 02** — necesita permiso del cliente. Mientras no exista: teardown de tienda pública etiquetado como tal (`Public store teardown — unaffiliated demo`)
 - [ ] **Columna de logos de clientes** — sustituir por tres MetricTile agregadas hasta que existan
+
+**Descuento de cliente fundador, pendiente de decidir:** −30 % a los dos primeros a
+cambio de caso de estudio publicable y testimonio, por escrito en el contrato. Compra
+el activo que bloquea los casos 01 y 02 sin tocar la lista, que es mucho más difícil
+de subir que de bajar.
 
 ---
 

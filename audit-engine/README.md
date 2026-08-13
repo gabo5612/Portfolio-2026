@@ -50,7 +50,7 @@ Abre `analysis/prompt.md`, pégalo en Claude junto con el JSON y con
 ```bash
 node bin/report.js auditorias/tienda.com.json analisis/tienda.com.json \
   --loom https://www.loom.com/share/<id> \
-  --cal https://cal.com/gabo5612/audit \
+  --cal https://cal.com/gabriel-arias-dev/audit \
   --out informes/
 ```
 
