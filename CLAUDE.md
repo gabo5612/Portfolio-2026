@@ -97,6 +97,16 @@ cache; the other assets are unhashed, so they get an hour and revalidate.
 `cleanUrls` is off on purpose: the internal links are `speed.html`, and it
 would add a 308 to every one of them.
 
+Two things about `vercel.json` that cost a deploy each to learn:
+
+- **It is validated against a strict schema.** An unknown key — a `_comment`,
+  say — is not ignored, it fails the build, and the site keeps serving the
+  previous deploy while looking perfectly fine. Any explanation goes here, not
+  in the file.
+- **Every matching header rule applies and the last one wins.** `/assets/(.*)`
+  has to come *before* `/assets/fonts/(.*)`, or the short cache overwrites the
+  immutable one.
+
 **No framework, deliberately.** The site's pitch is page speed and its hero is a PageSpeed gauge, so shipping a bundle would undercut the product. Keep it dependency-free.
 
 **Zero external requests, fonts included.** Google Fonts cost two extra
