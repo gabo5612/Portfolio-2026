@@ -146,8 +146,9 @@ dado al menos una llamada agendada.**
 
 ## Bloque 3 — Cobros, documentación y expediente
 
-- [ ] Wise Business (o Payoneer) operativo
-- [ ] Stripe para los recurrentes del retainer
+- [x] **Cuenta para cobros internacionales — Banesco Panamá**, ya operativa. Sustituye a Wise/Payoneer como destino de los pagos
+- [ ] **Confirmar con el asesor cómo encaja Banesco Panamá con el expediente.** Dos cosas distintas: (a) declarar la cuenta extranjera si residiendo en España supera el umbral del Modelo 720, y (b) que los ingresos que aterrizan en Panamá sean *demostrables* como facturación tuya — el expediente se sostiene sobre facturas cobradas y trazables, y un cobro en una cuenta que no aparece por ningún lado no prueba nada. Puede que convenga cobrar en una cuenta española y usar Banesco solo para los clientes que no puedan pagar de otro modo
+- [ ] Stripe para los recurrentes del retainer — cobro con tarjeta, liquidando donde decidas con el asesor
 - [ ] Numeración de facturas arrancada, correlativa y sin saltos desde la 001 (Wave o similar)
 - [ ] Plantilla de contrato con cláusulas explícitas: **trabajo remoto, cliente fuera de España**
 - [ ] Plantilla de propuesta
@@ -177,11 +178,17 @@ Lo único que mueve el objetivo de €4.500/mes.
 - [ ] **Lista de 50 tiendas Shopify candidatas** (BuiltWith, Store Leads, marcas DTC en Instagram)
 - [ ] PageSpeed sobre las 50 → quedarte con las 20 peores
 - [ ] Correr el lote sobre esas 20 (`bin/batch.js` + Actions ya construidos)
-- [ ] **Grabar 5 Looms y enviar 5 emails — hoy, sin esperar a la web**
+- [ ] **Grabar 5 Looms y enviar 5 emails — a mano, sin esperar a la fase 3**
 - [ ] Subir a 10 emails/día → 50/semana
 - [ ] SPF, DKIM y DMARC configurados **antes** del primer envío
 - [ ] Calentamiento de dominio: 10 emails/día la primera semana
-- [ ] Enlace de baja en todos los emails; mantener el objetivo en US/UK/CA/AU (GDPR)
+- [ ] Enlace de baja **y dirección postal física** en todos los emails; la segunda la exige CAN-SPAM en EE. UU.
+
+**Resend:** cuenta creada, y **bloqueada hasta que haya dominio** — exige uno
+verificado para enviar, sin sandbox aprovechable. El plan gratuito da 3.000
+correos/mes y 100/día contra los ~215/mes que necesitas, así que no hará falta
+pagarlo. Configuración, registros DNS, calentamiento y las tres plantillas de
+correo, en `OUTBOUND.md`.
 - [ ] Cuenta de Loom — el plan free da 25 vídeos; se toca techo rápido a 20/día
 - [ ] Perfil en Shopify Partners
 - [ ] Perfil ultra-especializado en Upwork (solo trabajos de €2.000+)
