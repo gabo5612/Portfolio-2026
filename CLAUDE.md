@@ -86,7 +86,11 @@ pass if any of them moved. A silent minifier bug looks exactly like a working
 site until someone reads the page.
 
 `vercel.json` makes that the deploy: build command `node build.js --check`,
-output `dist`. Without it Vercel serves the repository root, which is the
+output `dist`. Font filenames get a content hash in `dist/` (`sans.<hash>.woff2`)
+and the CSS `url()` and the preload `href`s are rewritten to match — that hash
+is the only thing that makes the one-year `immutable` header honest, since
+otherwise re-subsetting the fonts would leave returning visitors on the old
+glyphs for a year. Without it Vercel serves the repository root, which is the
 unminified source — that is exactly what happened on the first deploy, and
 nothing in the site looks wrong when it does. Fonts get a one-year immutable
 cache; the other assets are unhashed, so they get an hour and revalidate.
