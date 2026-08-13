@@ -7,6 +7,7 @@
    Uso:
      node bin/batch.js queue.csv --out auditorias/                      */
 
+import '../src/env.js';   // antes de cualquier lectura de process.env
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { auditar } from '../src/collect.js';

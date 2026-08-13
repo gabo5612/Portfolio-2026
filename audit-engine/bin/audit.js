@@ -8,6 +8,7 @@
      node bin/audit.js tienda.com --facturacion 250000 --moneda EUR
      node bin/audit.js tienda.com --out auditorias/                */
 
+import '../src/env.js';   // antes de cualquier lectura de process.env
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { auditar } from '../src/collect.js';
