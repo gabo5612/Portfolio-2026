@@ -15,7 +15,8 @@ no dependencies): the network is intercepted at `fetch`, so the collectors
 run their real code paths against recorded PSI and CrUX payloads.
 
 ```bash
-python3 -m http.server 8000     # serve the site; file:// works too
+python3 -m http.server 8000     # serve the site from source; file:// works too
+node build.js --check           # minify into dist/ and prove it renders the same
 
 cd audit-engine
 npm test                        # node:test, nothing to install
@@ -60,6 +61,29 @@ serves all three pages and does nothing on the one that lacks a given control.
 radio group plus sibling selectors, so it works with `main.js` blocked exactly
 as it does with it — same reasoning as the FAQ's native `<details>`. Do not
 convert it to a script.
+
+**Source is what you edit; `dist/` is what you deploy.** `build.js` minifies
+the three pages and the three assets with no dependencies — about 17% off the
+raw bytes, 5 KB off the whole home page once gzip has had its turn. It is not
+a bundler and does not rewrite code: it strips comments and collapses
+whitespace, nothing else.
+
+Three things it is deliberately careful about, each of which broke the site
+while it was being written:
+
+- CSS comments are removed *before* strings are set aside. The other order
+  lets an apostrophe inside a prose comment open a string that swallows every
+  rule until the next apostrophe.
+- `clamp()` / `calc()` are left untouched inside: their `+` and `−` require
+  the surrounding spaces, and without them the whole declaration is dropped.
+- Whitespace between tags is *collapsed to one space, never removed*. Between
+  two inline elements that gap is painted, and deleting it runs the words
+  together. The bytes this leaves behind are bytes gzip takes anyway.
+
+`node build.js --check` compares source against `dist/` — text, per-gap
+whitespace, `data-i18n` keys, `data-*` hooks, ids and hrefs — and refuses to
+pass if any of them moved. Run it before deploying; a silent minifier bug
+looks exactly like a working site until someone reads the page.
 
 **No framework, deliberately.** The site's pitch is page speed and its hero is a PageSpeed gauge, so shipping a bundle would undercut the product. Keep it dependency-free. The only external request is the Google Fonts stylesheet (IBM Plex Sans + Mono).
 

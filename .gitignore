@@ -12,5 +12,9 @@ audit-engine/analisis/
 .env.*
 !.env.example
 
+# Salida del build: se genera con `node build.js`, no se versiona.
+# En Cloudflare Pages: build command `node build.js`, output directory `dist`.
+dist/
+
 # macOS
 .DS_Store
