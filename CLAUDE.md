@@ -82,10 +82,42 @@ while it was being written:
 
 `node build.js --check` compares source against `dist/` — text, per-gap
 whitespace, `data-i18n` keys, `data-*` hooks, ids and hrefs — and refuses to
-pass if any of them moved. Run it before deploying; a silent minifier bug
-looks exactly like a working site until someone reads the page.
+pass if any of them moved. A silent minifier bug looks exactly like a working
+site until someone reads the page.
 
-**No framework, deliberately.** The site's pitch is page speed and its hero is a PageSpeed gauge, so shipping a bundle would undercut the product. Keep it dependency-free. The only external request is the Google Fonts stylesheet (IBM Plex Sans + Mono).
+`vercel.json` makes that the deploy: build command `node build.js --check`,
+output `dist`. Without it Vercel serves the repository root, which is the
+unminified source — that is exactly what happened on the first deploy, and
+nothing in the site looks wrong when it does. Fonts get a one-year immutable
+cache; the other assets are unhashed, so they get an hour and revalidate.
+`cleanUrls` is off on purpose: the internal links are `speed.html`, and it
+would add a 308 to every one of them.
+
+**No framework, deliberately.** The site's pitch is page speed and its hero is a PageSpeed gauge, so shipping a bundle would undercut the product. Keep it dependency-free.
+
+**Zero external requests, fonts included.** Google Fonts cost two extra
+origins *in series* — the stylesheet on `fonts.googleapis.com` has to arrive
+and parse before the first request to `fonts.gstatic.com` can start, and each
+pays its own DNS + TCP + TLS. That chain was blocking first paint by ~800 ms
+on a throttled phone. The fonts now live in `assets/fonts/`, subset to the
+characters these three pages actually use: 55 KB in three files, fewer bytes
+than Google sent and no chain. `sans.woff2` and `mono-400.woff2` are
+preloaded — they are what the first screen needs.
+
+Three things about that subset:
+
+- **Three files, not six.** IBM Plex Sans is variable, so one file covers
+  400–600. Mono is only ever used at 400 and 600; the single 500 rule
+  (`.btn--secondary`) is sans.
+- **`tnum` is retained deliberately.** Rule 01 of the design system puts every
+  score, second and price in mono with tabular figures. Drop that feature and
+  the digits stop lining up the moment a value changes.
+- **`▲ ● ■ ◆` and the arrows come from the system font.** IBM Plex has them in
+  no subset, so they always did, Google Fonts included — this is not a
+  regression from the subsetting. `assets/fonts/cobertura.json` records which
+  codepoints are in the fonts and which fall back, and `build.js` warns when
+  new copy uses a character in neither. That warning matters because the
+  failure is silent: one letter quietly changes typeface and nothing breaks.
 
 **JS only refines.** Every section is legible and usable with `main.js` blocked: the filmstrip renders a valid mid-load state from inline `opacity` attributes, the calculator ships a correct default result in the HTML, and the FAQ is native `<details>`. Static markup and the JS initial render must agree — at the default scrubber value of `30` (3.0s) that means before-header visible, before-hero/grid hidden, all after-frames visible. Never introduce markup that only becomes correct after JS runs.
 

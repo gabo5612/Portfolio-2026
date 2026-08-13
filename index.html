@@ -11,9 +11,13 @@
 <meta property="og:title" data-i18n-content="meta.ogTitle" content="Gabriel Arias · Shopify performance &amp; SEO">
 <meta property="og:description" data-i18n-content="meta.ogDescription" content="Two 30-day sprints, sold separately, each with a written guarantee. Free audit in 48 hours, no call required.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Fonts are served from this origin; the @font-face block in styles.css
+     explains why. These two are what the first screen needs: the headline,
+     lede and buttons in sans, the eyebrow and brand role in mono 400.
+     Preloading them starts the font download alongside the stylesheet
+     instead of waiting for it to arrive and parse first. -->
+<link rel="preload" href="assets/fonts/sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/mono-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
 <script src="assets/i18n.js" defer></script>
 <script src="assets/main.js" defer></script>

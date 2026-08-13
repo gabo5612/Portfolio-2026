@@ -3,6 +3,48 @@
    Design system v0.1 — dark only
    ============================================================ */
 
+/* ── Fonts, self-hosted ───────────────────────────────────────
+   Google Fonts cost two extra origins in series: the stylesheet
+   on fonts.googleapis.com has to arrive and parse before the
+   first request to fonts.gstatic.com can even start, and each
+   origin pays its own DNS + TCP + TLS. That chain blocked the
+   first paint for about 800 ms on a throttled phone — on a site
+   whose whole pitch is load time.
+
+   Served from this origin the fonts are subset to the characters
+   these three pages actually use (latin-1 plus the badge symbols
+   ▲ ● ■ ◆ and the arrows), which is fewer bytes than Google sent
+   and no chain at all.
+
+   `tnum` is retained on purpose: rule 01 of the design system
+   puts every score, second and price in mono with tabular
+   figures, and without that feature the digits stop lining up
+   the moment a value changes.
+
+   Only three files: IBM Plex Sans is variable, so one covers
+   400-600, and mono is only ever used at 400 and 600. */
+@font-face{
+  font-family:"IBM Plex Sans";
+  src:url(fonts/sans.woff2) format("woff2-variations");
+  font-weight:400 600;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"IBM Plex Mono";
+  src:url(fonts/mono-400.woff2) format("woff2");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"IBM Plex Mono";
+  src:url(fonts/mono-600.woff2) format("woff2");
+  font-weight:600;
+  font-style:normal;
+  font-display:swap;
+}
+
 :root{
   color-scheme:dark;
 
