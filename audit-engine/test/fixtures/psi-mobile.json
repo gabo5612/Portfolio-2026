@@ -1,0 +1,131 @@
+{
+  "_nota": "Respuesta de PageSpeed Insights v5 recortada a los campos que lee psi.js, con la forma exacta que devuelve la API. Números sintéticos.",
+  "kind": "pagespeedonline#result",
+  "id": "https://tienda.test/",
+  "lighthouseResult": {
+    "requestedUrl": "https://tienda.test/",
+    "finalUrl": "https://www.tienda.test/",
+    "lighthouseVersion": "12.2.1",
+    "fetchTime": "2026-08-12T21:14:05.123Z",
+    "categories": {
+      "performance": { "id": "performance", "title": "Performance", "score": 0.31 }
+    },
+    "audits": {
+      "largest-contentful-paint": {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.05,
+        "scoreDisplayMode": "numeric",
+        "displayValue": "5.2 s",
+        "numericValue": 5234.56,
+        "numericUnit": "millisecond"
+      },
+      "cumulative-layout-shift": {
+        "id": "cumulative-layout-shift",
+        "score": 0.18,
+        "displayValue": "0.312",
+        "numericValue": 0.3124,
+        "numericUnit": "unitless"
+      },
+      "total-blocking-time": {
+        "id": "total-blocking-time",
+        "score": 0.02,
+        "displayValue": "1,840 ms",
+        "numericValue": 1839.5,
+        "numericUnit": "millisecond"
+      },
+      "speed-index": { "id": "speed-index", "numericValue": 7104.2 },
+      "first-contentful-paint": { "id": "first-contentful-paint", "numericValue": 3401.8 },
+      "interactive": { "id": "interactive", "numericValue": 12630.0 },
+      "server-response-time": {
+        "id": "server-response-time",
+        "score": 1,
+        "numericValue": 180,
+        "details": { "type": "opportunity", "overallSavingsMs": 0, "items": [] }
+      },
+      "unused-javascript": {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.25,
+        "details": {
+          "type": "opportunity",
+          "overallSavingsMs": 2100,
+          "overallSavingsBytes": 911360,
+          "items": [
+            { "url": "https://loox.io/widget/loox.js", "totalBytes": 491520, "wastedBytes": 393216 },
+            { "url": "https://staticw2.yotpo.com/x/widget.js", "totalBytes": 393216, "wastedBytes": 262144 }
+          ]
+        }
+      },
+      "uses-responsive-images": {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "score": 0.3,
+        "details": {
+          "type": "opportunity",
+          "overallSavingsMs": 1450,
+          "overallSavingsBytes": 1269760,
+          "items": [
+            { "url": "https://www.tienda.test/cdn/shop/files/hero.jpg?width=2400", "wastedBytes": 1269760 }
+          ]
+        }
+      },
+      "render-blocking-resources": {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "score": 0.4,
+        "details": {
+          "type": "opportunity",
+          "overallSavingsMs": 890,
+          "overallSavingsBytes": 63488,
+          "items": [{ "url": "https://fonts.googleapis.com/css2?family=Playfair+Display" }]
+        }
+      },
+      "modern-image-formats": {
+        "id": "modern-image-formats",
+        "title": "Serve images in next-gen formats",
+        "score": 1,
+        "details": { "type": "opportunity", "overallSavingsMs": 0, "overallSavingsBytes": 0, "items": [] }
+      },
+      "resource-summary": {
+        "id": "resource-summary",
+        "details": {
+          "type": "table",
+          "items": [
+            { "resourceType": "total", "label": "Total", "requestCount": 187, "transferSize": 4935680 },
+            { "resourceType": "script", "label": "Script", "requestCount": 34, "transferSize": 2191360 },
+            { "resourceType": "image", "label": "Image", "requestCount": 38, "transferSize": 2027520 },
+            { "resourceType": "font", "label": "Font", "requestCount": 9, "transferSize": 430080 },
+            { "resourceType": "third-party", "label": "Third-party", "requestCount": 61, "transferSize": 1474560 }
+          ]
+        }
+      },
+      "third-party-summary": {
+        "id": "third-party-summary",
+        "details": {
+          "type": "table",
+          "items": [
+            {
+              "entity": { "type": "link", "text": "Yotpo", "url": "https://www.yotpo.com/" },
+              "transferSize": 655360,
+              "blockingTime": 720,
+              "mainThreadTime": 980
+            },
+            {
+              "entity": "Loox",
+              "transferSize": 491520,
+              "blockingTime": 510,
+              "mainThreadTime": 640
+            },
+            {
+              "entity": { "type": "link", "text": "Judge.me", "url": "https://judge.me/" },
+              "transferSize": 317440,
+              "blockingTime": 340,
+              "mainThreadTime": 410
+            }
+          ]
+        }
+      }
+    }
+  }
+}

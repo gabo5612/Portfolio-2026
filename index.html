@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="meta.title">Gabriel Arias · Shopify performance &amp; SEO</title>
+<meta name="description" data-i18n-content="meta.description" content="Two things quietly cost your Shopify store money: how slowly it loads, and how badly Google reads it. Both measurable from outside. Free 48-hour audit on either.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E1013'/%3E%3Cpath d='M17.5 4 8 18h6l-1.5 10L22 14h-6z' fill='%232DD48F'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" data-i18n-content="meta.ogTitle" content="Gabriel Arias · Shopify performance &amp; SEO">
+<meta property="og:description" data-i18n-content="meta.ogDescription" content="Two 30-day sprints, sold separately, each with a written guarantee. Free audit in 48 hours, no call required.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/i18n.js" defer></script>
+<script src="assets/main.js" defer></script>
+</head>
+<body>
+
+<a class="skip" href="#main" data-i18n="nav.skip">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="site-header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__name">Gabriel Arias</span>
+      <span class="brand__role" data-i18n="brand.role">Shopify performance &amp; SEO</span>
+    </a>
+    <nav class="nav" data-i18n-aria="nav.primary" aria-label="Primary">
+      <a class="nav__link" href="speed.html" data-i18n="nav.speed">Speed</a>
+      <a class="nav__link" href="seo.html" data-i18n="nav.seo">SEO</a>
+      <a class="nav__link" href="#report" data-i18n="nav.audit">The audit</a>
+      <a class="nav__link" href="#about" data-i18n="nav.about">About</a>
+      <a class="nav__link" href="#faq" data-i18n="nav.faq">FAQ</a>
+      <!-- Language is auto-detected; this only overrides the guess. The links
+           carry ?lang= so they still work if the click handler never binds. -->
+      <div class="lang" role="group" aria-label="Language · Idioma" data-lang-switch>
+        <a class="lang__opt" href="?lang=en" hreflang="en" lang="en" data-lang="en" aria-current="true">EN</a>
+        <a class="lang__opt" href="?lang=es" hreflang="es" lang="es" data-lang="es">ES</a>
+      </div>
+      <a class="btn btn--primary btn--sm" href="#audit" data-i18n="nav.cta">Free audit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="shell">
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="section hero">
+    <div>
+      <div class="mono-label hero__eyebrow" data-i18n="hero.eyebrow">Shopify · two sprints, sold separately</div>
+      <h1 class="h1 h1--long" data-i18n="hero.title">Two things quietly cost your store money: how slowly it loads, and how badly Google reads it.</h1>
+      <p class="hero__lede" data-i18n="hero.lede">Both are measurable from outside, in an afternoon. Pick the one that is your problem and I will send you the measurement within 48 hours — free, no call, yours to keep.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href="#tracks" data-i18n="hero.cta">See both, side by side ↓</a>
+        <a class="link-quiet" href="#report" data-i18n="hero.link">What the free audit contains</a>
+      </div>
+      <p class="hero__note" data-i18n="hero.note">One operator, Shopify only. Each sprint is 30 days with a written guarantee.</p>
+    </div>
+
+    <div class="card dual">
+      <div class="mono-label dual__head" data-i18n="dual.label">This site, measured by its own tools</div>
+      <div class="dual__grid">
+        <div class="dual__cell">
+          <svg class="gauge__dial" width="120" height="120" viewBox="0 0 128 128" role="img" data-i18n-aria="gauge.alt" aria-label="No verified PageSpeed score published yet">
+            <circle cx="64" cy="64" r="54" fill="none" stroke="var(--hairline)" stroke-width="8"></circle>
+            <text x="64" y="80" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="44" font-weight="600" fill="#8A929B">—</text>
+          </svg>
+          <div class="mono-label" data-i18n="dual.speed">PageSpeed mobile</div>
+        </div>
+        <div class="dual__cell dual__cell--centred">
+          <div class="dual__score">—<span class="dual__total">/22</span></div>
+          <div class="mono-label" data-i18n="dual.seo">SEO checks passed</div>
+        </div>
+      </div>
+      <div class="dual__foot">
+        <span class="badge badge--warn badge--md" data-i18n="dual.badge">▲ Awaiting first measured build</span>
+        <p class="dual__note" data-i18n="dual.note">Both figures come from running the audits against this domain at build time, published with their raw output. Until then they show nothing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Facts strip ──────────────────────────────────────────────────── -->
+  <section class="facts" data-i18n-aria="facts.aria" aria-label="At a glance">
+    <div class="fact">
+      <div class="mono-label" data-i18n="facts.turnaround">Turnaround</div>
+      <div class="fact__value" data-i18n="facts.turnaroundValue">48 h</div>
+      <div class="fact__note" data-i18n="facts.turnaroundNote">From request to report, either track</div>
+    </div>
+    <div class="fact">
+      <div class="mono-label" data-i18n="facts.sprint">Sprint length</div>
+      <div class="fact__value" data-i18n="facts.sprintValue">30 days</div>
+      <div class="fact__note" data-i18n="facts.sprintNote">Fixed scope, fixed price, one at a time</div>
+    </div>
+    <div class="fact">
+      <div class="mono-label" data-i18n="facts.guarantees">Guarantees</div>
+      <div class="fact__value fact__value--sans"><span class="diamond" aria-hidden="true">◆</span><span data-i18n="facts.guaranteesValue">Two, both written</span></div>
+      <div class="fact__note" data-i18n="facts.guaranteesNote">85+ on speed · every failed check green on SEO</div>
+    </div>
+    <div class="fact fact--divided">
+      <div class="mono-label" data-i18n="facts.logos">Client logos</div>
+      <div class="fact__value fact__value--empty">—</div>
+      <div class="fact__note fact__note--muted" data-i18n="facts.logosNote">Replaces this column after the first sprint</div>
+    </div>
+  </section>
+
+  <!-- ── The two tracks ───────────────────────────────────────────────── -->
+  <section class="section" id="tracks">
+    <div class="mono-label section__eyebrow" data-i18n="tracks.eyebrow">The two tracks</div>
+    <h2 class="h2 section__title" data-i18n="tracks.title">Both demonstrated here, before you give me anything</h2>
+    <p class="section__lede" data-i18n="tracks.lede">Neither of these is a pitch you have to take on trust. Drag the scrubber; read the check list. Then decide which of the two is costing you more.</p>
+
+    <div class="tracks">
+
+      <!-- Track 01 · speed -->
+      <article class="card track">
+        <div>
+          <div class="track__head">
+            <div class="mono-label" data-i18n="tracks.speedKind">Track 01 · speed</div>
+            <div class="mono-label" data-i18n="tracks.days">30 days</div>
+          </div>
+          <h3 class="track__title" data-i18n="tracks.speedTitle">Your customer is looking at a blank screen</h3>
+          <p class="track__text" data-i18n="tracks.speedText">Three seconds into the load, one of these two stores has shown nothing. Same store, same connection, before and after the sprint.</p>
+        </div>
+
+        <div>
+          <div class="track__meta">
+            <span class="mono-label" data-i18n="tracks.wireframe">Wireframe frames — real captures pending</span>
+            <span class="film__readout" data-time>3.0s</span>
+          </div>
+          <div class="film film--compact">
+            <div>
+              <div class="mono-label mono-label--bad film__side" data-i18n="film.before">■ Before</div>
+              <div class="frame frame--bad frame--sm">
+                <div class="frame__bar" data-frame="bHeader" style="opacity:1"></div>
+                <div class="frame__hero" data-frame="bHero" style="opacity:0"></div>
+                <div class="frame__grid" data-frame="bGrid" style="opacity:0">
+                  <div class="frame__tile"></div><div class="frame__tile"></div><div class="frame__tile"></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="mono-label mono-label--good film__side" data-i18n="film.after">● After</div>
+              <div class="frame frame--good frame--sm">
+                <div class="frame__bar" data-frame="aHeader" style="opacity:1"></div>
+                <div class="frame__hero" data-frame="aHero" style="opacity:1"></div>
+                <div class="frame__grid" data-frame="aGrid" style="opacity:1">
+                  <div class="frame__tile"></div><div class="frame__tile"></div><div class="frame__tile"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="film__controls">
+            <button class="btn btn--secondary btn--sm" type="button" data-play data-i18n="film.play">▶ Play once</button>
+            <input class="scrub" type="range" min="0" max="45" step="1" value="30" data-scrub data-i18n-aria="film.scrub" aria-label="Load time scrubber, seconds">
+          </div>
+        </div>
+
+        <div class="warranty">
+          <span class="diamond" aria-hidden="true">◆</span>
+          <span data-i18n="tracks.speedWarranty">PageSpeed 85+ or full refund</span>
+        </div>
+
+        <div class="track__actions">
+          <a class="btn btn--primary" href="speed.html" data-i18n="tracks.speedCta">The speed sprint →</a>
+          <a class="track__aside" href="speed.html#numbers" data-i18n="tracks.speedAside">Or work out what a second is costing you</a>
+        </div>
+      </article>
+
+      <!-- Track 02 · technical SEO -->
+      <article class="card track">
+        <div>
+          <div class="track__head">
+            <div class="mono-label" data-i18n="tracks.seoKind">Track 02 · technical SEO</div>
+            <div class="mono-label" data-i18n="tracks.days">30 days</div>
+          </div>
+          <h3 class="track__title" data-i18n="tracks.seoTitle">Google reads a different store than your customers do</h3>
+          <p class="track__text" data-i18n="tracks.seoText">Twenty-two technical checks decide whether it can crawl, index and understand your catalogue. The whole list is public, and you can repeat every one of them yourself.</p>
+        </div>
+
+        <div>
+          <div class="track__meta">
+            <span class="mono-label" data-i18n="tracks.yourStore">Your store · checks passed</span>
+            <span class="film__readout film__readout--muted">—/22</span>
+          </div>
+          <div class="groups">
+            <div class="groups__row">
+              <span data-i18n="groups.crawl">Crawling and indexing</span>
+              <span class="groups__count">— / 6</span>
+            </div>
+            <div class="groups__row">
+              <span data-i18n="groups.dupes">Duplicate content</span>
+              <span class="groups__count">— / 4</span>
+            </div>
+            <div class="groups__row">
+              <span data-i18n="groups.meta">Page metadata</span>
+              <span class="groups__count">— / 5</span>
+            </div>
+            <div class="groups__row">
+              <span data-i18n="groups.rich">Rich results and AI search</span>
+              <span class="groups__count">— / 7</span>
+            </div>
+          </div>
+          <div class="track__await">
+            <span class="badge badge--warn badge--sm" data-i18n="tracks.awaitBadge">▲ Awaiting your run</span>
+            <span class="track__awaitText" data-i18n="tracks.awaitText">Filled by the free audit. A check that cannot be run is reported, never dropped — the total is always 22.</span>
+          </div>
+        </div>
+
+        <div class="warranty">
+          <span class="diamond" aria-hidden="true">◆</span>
+          <span data-i18n="tracks.seoWarranty">Every failed check green, or full refund</span>
+        </div>
+
+        <div class="track__actions">
+          <a class="btn btn--primary" href="seo.html" data-i18n="tracks.seoCta">The SEO sprint →</a>
+          <a class="track__aside" href="seo.html#checks" data-i18n="tracks.seoAside">Or read all twenty-two checks</a>
+        </div>
+      </article>
+    </div>
+
+    <p class="tracks__note" data-i18n="tracks.note">Sold separately, one at a time. Two sprints in one month would mean cutting one of them short, and then neither guarantee is defensible.</p>
+  </section>
+
+  <!-- ── What the free audit contains ─────────────────────────────────── -->
+  <section class="section section--rule" id="report">
+    <div class="mono-label section__eyebrow" data-i18n="report.eyebrow">The free audit · either track</div>
+    <h2 class="h2 section__title" data-i18n="report.title">What lands in your inbox in 48 hours</h2>
+    <p class="section__lede" data-i18n="report.lede">Not a PDF attachment. A link to a page on this domain that loads in under half a second — a consultant who emails you an 8 MB file has already answered your question. You pick one track; the shape of the report is the same for both.</p>
+
+    <ol class="anatomy">
+      <li class="anatomy__item">
+        <span class="anatomy__n">01</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="report.t1">The number that hurts</h3>
+          <p class="anatomy__text" data-i18n="report.p1">On speed, what the delay costs you every month, with the formula and coefficient printed underneath. On SEO, how many of the twenty-two checks you fail — a count, not a currency, because revenue lost to indexing cannot be measured from outside without inventing it.</p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">02</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="report.t2">You against two competitors</h3>
+          <p class="anatomy__text" data-i18n="report.p2">Same test, same day, same connection. Your store beside two others in your niche — because a second in the abstract means nothing, and a second behind a rival means everything. You name the two; guessing them would produce a false comparison.</p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">03</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="report.t3">Five findings, worst first</h3>
+          <p class="anatomy__text" data-i18n="report.p3">Five. Not twenty. A twenty-point report doesn't get read, it gets postponed. Each one says what's happening, what it costs, and what I'd do — with the metric, the source and the date attached. On the SEO track each finding cites the check it comes from.</p>
+        </div>
+      </li>
+      <li class="anatomy__item anatomy__item--gift">
+        <span class="anatomy__n anatomy__n--gift">04</span>
+        <div>
+          <div class="mono-label anatomy__kicker" data-i18n="report.k4">Yours either way</div>
+          <h3 class="anatomy__title" data-i18n="report.t4">One fix you can apply today, without me</h3>
+          <p class="anatomy__text" data-i18n="report.p4">Written out to the click: which screen in your Shopify admin, which button, and how to check it worked. If you apply it, see the number move, and never speak to me again, the audit did its job.</p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">05</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="report.t5">The plan, week by week</h3>
+          <p class="anatomy__text" data-i18n="report.p5">Three weeks on the speed track, four on SEO — the fourth is the re-crawl, because a schema change nobody has re-crawled is deployed, not finished. Either way this is the entire scope of the sprint, written down. Hand it to your own developer if you'd rather; it's yours.</p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">06</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="report.t6">What happens if nothing changes</h3>
+          <p class="anatomy__text" data-i18n="report.p6">Where the numbers have been drifting and what the next app install will cost. No drama. Slow stores rarely break on any particular day, which is exactly why they stay slow for years.</p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">07</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="report.t7">One way to reply</h3>
+          <p class="anatomy__text" data-i18n="report.p7">Twenty minutes in a calendar, if you want them. No second CTA, no newsletter, no drip sequence disguised as a resource.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="provenance">
+      <div class="provenance__item">
+        <div class="mono-label" data-i18n="prov.l1">Measured by</div>
+        <p data-i18n="prov.p1">PageSpeed Insights for lab data and the CrUX History API for what your real users have been seeing. On the SEO track, your store's own responses — no API keys, nothing you have to grant me.</p>
+      </div>
+      <div class="provenance__item">
+        <div class="mono-label" data-i18n="prov.l2">Every figure carries</div>
+        <p data-i18n="prov.p2">Its metric, its value, its source and the date it was taken. A number without those four does not appear — the section renders empty instead.</p>
+      </div>
+      <div class="provenance__item">
+        <div class="mono-label" data-i18n="prov.l3">Before it reaches you</div>
+        <p data-i18n="prov.p3">I read it, check the numbers against the live tools, and record the walkthrough. Nothing is sent that I haven't looked at first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Case studies ─────────────────────────────────────────────────── -->
+  <section class="section section--rule">
+    <div class="mono-label section__eyebrow" data-i18n="cases.eyebrow">Case studies</div>
+    <h2 class="h2 section__title" data-i18n="cases.title">Context, intervention, measured result</h2>
+    <p class="section__lede" data-i18n="cases.lede">Two slots, one per track, both waiting on real measurements. Public-store teardowns are labelled as teardowns — an unaffiliated demo is worth more than a fabricated client.</p>
+
+    <div class="cases cases--pair">
+      <article class="card card--dashed case case--empty">
+        <span class="mono-label" data-i18n="cases.speedSlot">Speed · slot 01 · empty</span>
+        <p class="case__text" data-i18n="cases.speedText">Reserved for the first paid speed sprint. Publishing it needs four things: the client's permission, the before capture, the after capture, and the date of each.</p>
+        <a class="case__link" href="speed.html" data-i18n="cases.link">What the sprint covers →</a>
+      </article>
+      <article class="card card--dashed case case--empty">
+        <span class="mono-label" data-i18n="cases.seoSlot">SEO · slot 01 · empty</span>
+        <p class="case__text" data-i18n="cases.seoText">Reserved for the first paid SEO sprint. Both audit runs, the first and the re-crawl, published side by side with the date of each.</p>
+        <a class="case__link" href="seo.html" data-i18n="cases.link">What the sprint covers →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── Process ──────────────────────────────────────────────────────── -->
+  <section class="section section--rule">
+    <div class="mono-label section__eyebrow" data-i18n="process.eyebrow">Process</div>
+    <h2 class="h2 section__title section__title--last" data-i18n="process.title">How this works, either track</h2>
+    <ol class="steps">
+      <li class="card step">
+        <span class="step__n step__n--active">01</span>
+        <div class="step__title" data-i18n="process.t1">Free audit</div>
+        <div class="step__when" data-i18n="process.w1">48 hours</div>
+        <p class="step__text" data-i18n="process.p1">You send the store URL and say which track. You get a Loom and a written, prioritised report. No call.</p>
+      </li>
+      <li class="card step">
+        <span class="step__n">02</span>
+        <div class="step__title" data-i18n="process.t2">Baseline</div>
+        <div class="step__when" data-i18n="process.w2">Day 1</div>
+        <p class="step__text" data-i18n="process.p2">We record the starting numbers together, so the result at the end is not my word against yours. It is also what the guarantee is measured against.</p>
+      </li>
+      <li class="card step">
+        <span class="step__n">03</span>
+        <div class="step__title" data-i18n="process.t3">Sprint</div>
+        <div class="step__when" data-i18n="process.w3">30 days</div>
+        <p class="step__text" data-i18n="process.p3">Work happens on a duplicated theme. Nothing goes live until you approve the diff. One track at a time.</p>
+      </li>
+      <li class="card step">
+        <span class="step__n">04</span>
+        <div class="step__title" data-i18n="process.t4">Proof</div>
+        <div class="step__when" data-i18n="process.w4">Last week</div>
+        <p class="step__text" data-i18n="process.p4">The same measurement, run again. On speed that is the closing PageSpeed and vitals; on SEO the re-crawl with every failed check green.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ── About ────────────────────────────────────────────────────────── -->
+  <section class="section section--rule" id="about">
+    <div class="about">
+      <div class="mono-label about__eyebrow" data-i18n="about.eyebrow">About</div>
+      <h2 class="h2 about__title">Gabriel Arias</h2>
+      <p class="about__text" data-i18n="about.p1">Building and shipping websites since 2014, the last years of it inside ecommerce, where the difference between a fast page and a slow one shows up in the checkout numbers rather than in a report.</p>
+      <p class="about__text" data-i18n="about.p2">I work on the two parts of a store that are not a matter of opinion: how fast it is, and whether a crawler can read it. Both are measurable before I start and measurable when I finish, and both of us can see the number.</p>
+      <p class="about__text about__text--last" data-i18n="about.p3">Shopify only. One sprint at a time. That is the whole offer.</p>
+    </div>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────────────────────── -->
+  <section class="section section--rule" id="faq">
+    <div class="mono-label section__eyebrow" data-i18n="faq.eyebrow">FAQ</div>
+    <h2 class="h2 section__title section__title--last" data-i18n="faq.title">Before you ask</h2>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q"><span data-i18n="faq.q1">Which one do I need?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a" data-i18n="faq.a1">Placeholder. If you have traffic that is not converting, start with speed. If you have a catalogue that Google barely shows, start with SEO. Both free audits are free — take the one you are less sure about.</p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q"><span data-i18n="faq.q2">Can I buy both at once?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a" data-i18n="faq.a2">Placeholder. Not in the same month. One operator running both sprints at once has to cut one of them short, and then neither guarantee is worth anything. Run them back to back if you want both.</p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q"><span data-i18n="faq.q3">What if I already have a developer?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a" data-i18n="faq.a3">Placeholder. Either I hand over a prioritised diff and they ship it, or I ship it and they review. Both work, and the second is faster.</p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q"><span data-i18n="faq.q4">Do you need access to my live theme?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a" data-i18n="faq.a4">Placeholder. Staff access to a duplicated theme. The live one is never touched until you approve the diff. The free audit needs nothing at all — just the URL.</p>
+      </details>
+      <details class="faq__item faq__item--last">
+        <summary class="faq__q"><span data-i18n="faq.q5">Do you work with non-Shopify stores?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a" data-i18n="faq.a5">Placeholder. No. Both methods are Shopify-specific, which is exactly why each takes 30 days instead of a quarter.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ── Audit CTA ────────────────────────────────────────────────────── -->
+  <section class="section section--rule" id="audit">
+    <div class="card cta">
+      <div class="cta__head">
+        <h2 class="h2 cta__title" data-i18n="cta.title">Pick the one that is costing you more</h2>
+        <p class="cta__lede" data-i18n="cta.lede">Either audit is free, takes 48 hours, needs nothing but your store URL, and arrives without a call attached.</p>
+      </div>
+      <div class="cta__pair">
+        <div class="cta__option">
+          <a class="btn btn--primary btn--lg cta__btn" data-i18n="cta.speedButton" data-i18n-href="cta.speedMailto" href="mailto:gabo5612@gmail.com?subject=Free%20Shopify%20speed%20audit&amp;body=Store%20URL%3A%20">Free speed audit</a>
+          <span class="cta__warranty"><span class="diamond" aria-hidden="true">◆</span><span data-i18n="cta.speedWarranty">85+ or refund</span></span>
+        </div>
+        <div class="cta__option">
+          <a class="btn btn--primary btn--lg cta__btn" data-i18n="cta.seoButton" data-i18n-href="cta.seoMailto" href="mailto:gabo5612@gmail.com?subject=Free%20Shopify%20SEO%20audit&amp;body=Store%20URL%3A%20">Free SEO audit</a>
+          <span class="cta__warranty"><span class="diamond" aria-hidden="true">◆</span><span data-i18n="cta.seoWarranty">Every failed check green</span></span>
+        </div>
+      </div>
+      <div class="embed-slot">
+        <span class="mono-label" data-i18n="cta.embed">Cal.com embed</span>
+        <span class="embed-slot__note" data-i18n="cta.embedNote">Loads on interaction or on entering the viewport, with fixed dimensions so it cannot shift the layout.</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="foot-brand">
+      <span class="foot-brand__name">Gabriel Arias</span>
+      <span class="mono-label" data-i18n="brand.role">Shopify performance &amp; SEO</span>
+    </div>
+    <div class="foot-links">
+      <a href="speed.html" data-i18n="foot.speed">Speed sprint</a>
+      <a href="seo.html" data-i18n="foot.seo">SEO sprint</a>
+      <a class="foot-links__muted" href="#report" data-i18n="foot.audit">The free audit</a>
+    </div>
+    <div class="foot-links">
+      <a href="mailto:gabo5612@gmail.com">gabo5612@gmail.com</a>
+      <a href="https://www.linkedin.com/in/gabriel-oniel-arias/" rel="me noopener">LinkedIn ↗</a>
+      <a class="foot-links__muted" href="https://github.com/gabo5612/" rel="me noopener">GitHub ↗</a>
+    </div>
+    <div class="foot-links">
+      <span class="mono-label" data-i18n="foot.reports">This site's own reports ↗</span>
+      <span class="foot-legal" data-i18n="foot.legal">Legal notice · Privacy</span>
+      <span class="foot-copy">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

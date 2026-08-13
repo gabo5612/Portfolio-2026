@@ -1,0 +1,6 @@
+# Cola de auditorías en lote. Copia a queue.csv y edita.
+# La columna `competidores` es la que más convierte: sin ella el informe
+# pierde la comparativa, que es el gancho emocional. Dos por tienda basta.
+url,competidores,facturacion,moneda,rango,nombre,email
+ejemplo-tienda.com,competidor-uno.com;competidor-dos.com,,USD,,Ana,ana@ejemplo-tienda.com
+otra-tienda.co.uk,rival-a.co.uk;rival-b.co.uk,120000,GBP,alto,Tom,tom@otra-tienda.co.uk

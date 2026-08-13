@@ -1,0 +1,142 @@
+{
+  "_nota": "DATOS SINTÉTICOS. Sirven para probar la plantilla del informe sin gastar cuota de PSI. No los uses en un informe real ni cites estas cifras en ningún sitio.",
+  "estado": "ok",
+  "tienda": {
+    "host": "ejemplo-tienda.com",
+    "origin": "https://ejemplo-tienda.com",
+    "url_final": "https://www.ejemplo-tienda.com/",
+    "moneda_activa": "USD"
+  },
+  "fecha_auditoria": "2026-08-12",
+  "infra": {
+    "url_final": "https://www.ejemplo-tienda.com/",
+    "redirecciones": { "saltos": 2, "cadena": [] },
+    "redirecciones_encadenadas": true,
+    "compresion": "br",
+    "cache_control": null,
+    "cdn": "Shopify (Fastly)",
+    "servidor": "cloudflare",
+    "shopify": { "confirmado": true, "shop_id": "11044168", "evidencia": "cabecera x-shopid" },
+    "hsts": true,
+    "fuente": "cabeceras HTTP de respuesta"
+  },
+  "tema": {
+    "nombre": "Dawn (modificado)",
+    "id": 130450260048,
+    "theme_store_id": null,
+    "a_medida": true,
+    "rol": "main",
+    "fuente": "objeto Shopify.theme en el HTML"
+  },
+  "paginas": [
+    {
+      "url": "https://www.ejemplo-tienda.com/",
+      "bytes_html": 412000,
+      "scripts": 34,
+      "imagenes": {
+        "total": 38, "sin_lazy": 21, "sin_formato_moderno": 17,
+        "sin_srcset": 12, "sin_dimensiones": 19, "renderizadas_por_js": 3,
+        "ejemplos_sin_lazy": ["/cdn/shop/files/hero-desktop.jpg?width=2400"]
+      },
+      "fuentes": {
+        "familias_declaradas": ["Inter", "Playfair Display", "Custom Sans"],
+        "caras_font_face": 9, "caras_con_font_display": 0,
+        "falta_font_display": true, "google_fonts": 1,
+        "google_fonts_sin_display": 1, "archivos_fuente": 9,
+        "alcance": "sólo CSS embebido en el HTML; las hojas externas no se descargan"
+      }
+    }
+  ],
+  "apps": {
+    "total": 19,
+    "apps": [
+      { "id": "judge-me", "nombre": "Judge.me", "categoria": "reseñas", "evidencia": "https://cdn1.judge.me/widget.js", "confianza": "alta", "paginas": ["https://www.ejemplo-tienda.com/"] },
+      { "id": "loox", "nombre": "Loox", "categoria": "reseñas", "evidencia": "https://loox.io/widget/loox.js", "confianza": "alta", "paginas": ["https://www.ejemplo-tienda.com/"] },
+      { "id": "yotpo", "nombre": "Yotpo Reviews", "categoria": "reseñas", "evidencia": "https://staticw2.yotpo.com/x/widget.js", "confianza": "alta", "paginas": ["https://www.ejemplo-tienda.com/"] },
+      { "id": "klaviyo", "nombre": "Klaviyo", "categoria": "email", "evidencia": "https://static.klaviyo.com/onsite/js/klaviyo.js", "confianza": "alta", "paginas": ["https://www.ejemplo-tienda.com/"] },
+      { "id": "gtm", "nombre": "Google Tag Manager", "categoria": "analitica", "evidencia": "https://www.googletagmanager.com/gtm.js", "confianza": "alta", "paginas": ["https://www.ejemplo-tienda.com/"] }
+    ],
+    "duplicadas": [
+      { "categoria": "reseñas", "cuantas": 3, "nombres": ["Judge.me", "Loox", "Yotpo Reviews"] }
+    ],
+    "dominios_terceros": [
+      { "dominio": "loox.io", "recursos": 6 },
+      { "dominio": "staticw2.yotpo.com", "recursos": 5 },
+      { "dominio": "cdn1.judge.me", "recursos": 4 }
+    ],
+    "alcance": "apps presentes en el HTML inicial; las inyectadas por Tag Manager no se ven"
+  },
+  "rendimiento": {
+    "movil": {
+      "estrategia": "mobile",
+      "score": 31,
+      "metricas": { "lcp_s": 5.2, "cls": 0.31, "tbt_ms": 1840, "speed_index_s": 7.1, "fcp_s": 3.4, "tti_s": 12.6 },
+      "oportunidades": [
+        { "id": "unused-javascript", "titulo": "Reduce unused JavaScript", "ahorro_ms": 2100, "ahorro_kb": 890, "ejemplos": ["https://loox.io/widget/loox.js", "https://staticw2.yotpo.com/x/widget.js"] },
+        { "id": "uses-responsive-images", "titulo": "Properly size images", "ahorro_ms": 1450, "ahorro_kb": 1240, "ejemplos": ["/cdn/shop/files/hero-desktop.jpg?width=2400"] },
+        { "id": "render-blocking-resources", "titulo": "Eliminate render-blocking resources", "ahorro_ms": 890, "ahorro_kb": 62, "ejemplos": ["https://fonts.googleapis.com/css2?family=Playfair+Display"] }
+      ],
+      "recursos": {
+        "total_kb": 4820,
+        "desglose": { "script": { "kb": 2140, "peticiones": 34 }, "image": { "kb": 1980, "peticiones": 38 }, "font": { "kb": 420, "peticiones": 9 } }
+      },
+      "terceros": [
+        { "entidad": "Yotpo", "kb": 640, "bloqueo_ms": 720 },
+        { "entidad": "Loox", "kb": 480, "bloqueo_ms": 510 },
+        { "entidad": "Judge.me", "kb": 310, "bloqueo_ms": 340 }
+      ],
+      "fuente": "PageSpeed Insights",
+      "version_lighthouse": "12.2.1",
+      "fecha": "2026-08-12",
+      "url_analizada": "https://www.ejemplo-tienda.com/"
+    },
+    "escritorio": {
+      "estrategia": "desktop", "score": 68,
+      "metricas": { "lcp_s": 2.4, "cls": 0.12, "tbt_ms": 310, "speed_index_s": 2.9, "fcp_s": 1.2, "tti_s": 4.1 },
+      "oportunidades": [], "recursos": { "total_kb": 4790, "desglose": {} }, "terceros": [],
+      "fuente": "PageSpeed Insights", "version_lighthouse": "12.2.1", "fecha": "2026-08-12",
+      "url_analizada": "https://www.ejemplo-tienda.com/"
+    }
+  },
+  "campo": {
+    "disponible": true,
+    "form_factor": "PHONE",
+    "periodos": ["2026-02-21", "2026-08-08"],
+    "series": {
+      "largest_contentful_paint": { "p75": [4100, 4800], "ultimo": 4800, "primero": 4100, "tendencia": "empeora" },
+      "cumulative_layout_shift": { "p75": [0.22, 0.29], "ultimo": 0.29, "primero": 0.22, "tendencia": "empeora" }
+    },
+    "fuente": "CrUX History API (percentil 75, usuarios reales)",
+    "fecha": "2026-08-08"
+  },
+  "competencia": [
+    { "host": "competidor-uno.com", "url": "https://competidor-uno.com", "score": 78, "lcp_s": 1.8, "cls": 0.04, "fuente": "PageSpeed Insights", "fecha": "2026-08-12" },
+    { "host": "competidor-dos.com", "url": "https://competidor-dos.com", "score": 64, "lcp_s": 2.6, "cls": 0.09, "fuente": "PageSpeed Insights", "fecha": "2026-08-12" }
+  ],
+  "dinero": {
+    "lcp_s": 5.2, "objetivo_s": 2.5, "exceso_s": 2.7, "perdida_pct": 21.6,
+    "perdida_importe": null, "moneda": "USD", "facturacion_mensual": null,
+    "formula": "(5.2s − 2.5s) × 8%/s = 21,6% de la facturación mensual",
+    "fuente": "0,8% de conversión por cada 100 ms — pendiente de verificar contra la fuente primaria",
+    "supuestos": [
+      "Objetivo de LCP: 2.5s (umbral \"good\" de Core Web Vitals).",
+      "Coeficiente: 8% de conversión por segundo por encima del objetivo.",
+      "Tope aplicado: 45%.",
+      "Facturación mensual desconocida: sólo se expresa el porcentaje."
+    ]
+  },
+  "lead_score": {
+    "total": 60,
+    "señales": [
+      { "señal": "PageSpeed móvil por debajo de 40", "puntos": 30, "evidencia": "score 31" },
+      { "señal": "Más de 15 apps detectadas", "puntos": 20, "evidencia": "19 apps" },
+      { "señal": "Geo objetivo: US", "puntos": 20, "evidencia": "moneda activa USD" },
+      { "señal": "Tema a medida o premium — invierten en su tienda", "puntos": 10, "evidencia": "Dawn (modificado)" }
+    ],
+    "geo": { "pais": "US", "evidencia": "moneda activa USD", "confianza": "media" },
+    "prioridad": "alta"
+  },
+  "datos_faltantes": [
+    "Facturación mensual desconocida: la pérdida sólo se expresa en porcentaje."
+  ]
+}

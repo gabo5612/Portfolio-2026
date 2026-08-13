@@ -1,0 +1,136 @@
+{
+  "idioma": "en",
+  "diagnostico_una_linea": "Three review apps are loading at once, and your store takes 5.2s to show a product on mobile.",
+  "coste_estimado_mensual": {
+    "valor": null,
+    "porcentaje": 21.6,
+    "moneda": "USD",
+    "supuestos": [
+      "Target LCP of 2.5s, the Core Web Vitals \"good\" threshold.",
+      "Coefficient of 8% of conversion per second above target.",
+      "Monthly revenue unknown, so the figure stays a percentage."
+    ],
+    "fuente": "0.8% of conversion per extra 100ms — pending verification against the primary source"
+  },
+  "hallazgos": [
+    {
+      "titulo": "Three review apps are running side by side",
+      "que_pasa": "Judge.me, Loox and Yotpo are all loading on the same page. Each one ships its own widget, its own stylesheet and its own copy of the review data.",
+      "por_que_cuesta_dinero": "Together they block the main thread for 1570 ms. That is a second and a half where a tap on your product page does nothing, on the page where people decide to buy.",
+      "evidencia": {
+        "metrica": "Third-party blocking time (Yotpo + Loox + Judge.me)",
+        "valor": "720 ms + 510 ms + 340 ms",
+        "fuente": "PageSpeed Insights",
+        "fecha": "2026-08-12"
+      },
+      "que_haria": "Keep Judge.me, export the reviews out of Loox and Yotpo, import them, and uninstall both apps. One widget, all the reviews.",
+      "impacto": "alto",
+      "esfuerzo_horas": 4
+    },
+    {
+      "titulo": "Your competitor shows a product in 1.8s. You take 5.2s.",
+      "que_pasa": "Same test, same day, same connection. By the time your first product image appears, a shopper on competidor-uno.com has already scrolled past three.",
+      "por_que_cuesta_dinero": "Every visitor who hesitates during those seconds is a visitor they keep and you do not. On mobile, most of them never come back.",
+      "evidencia": {
+        "metrica": "Mobile LCP, you vs competidor-uno.com",
+        "valor": "5.2s vs 1.8s",
+        "fuente": "PageSpeed Insights",
+        "fecha": "2026-08-12"
+      },
+      "que_haria": "Fix the review apps and the hero image first. Those two alone close most of the gap.",
+      "impacto": "alto",
+      "esfuerzo_horas": 6
+    },
+    {
+      "titulo": "The hero image is sent at 2400px to a 390px phone",
+      "que_pasa": "Your homepage hero is served at full desktop resolution to every device. A phone downloads the whole thing and then throws away most of the pixels.",
+      "por_que_cuesta_dinero": "It is the single heaviest thing on the page and it sits in front of everything else. Nothing your customer came for appears until it lands.",
+      "evidencia": {
+        "metrica": "Properly size images (Lighthouse opportunity)",
+        "valor": "1450 ms, 1240 KB",
+        "fuente": "PageSpeed Insights",
+        "fecha": "2026-08-12"
+      },
+      "que_haria": "Serve a responsive srcset from Shopify's image CDN and convert the hero to WebP. The theme already supports it.",
+      "impacto": "alto",
+      "esfuerzo_horas": 3
+    },
+    {
+      "titulo": "Nine font files, none with font-display",
+      "que_pasa": "Three families across nine weights, and not one declares font-display. The browser hides your text until the fonts arrive.",
+      "por_que_cuesta_dinero": "Your product names and prices are invisible for the first seconds. The page looks broken rather than slow, which is worse.",
+      "evidencia": {
+        "metrica": "@font-face declarations without font-display",
+        "valor": "9 of 9",
+        "fuente": "HTML of the homepage",
+        "fecha": "2026-08-12"
+      },
+      "que_haria": "Add font-display: swap to every face and drop Playfair Display, which is used on one heading.",
+      "impacto": "medio",
+      "esfuerzo_horas": 2
+    },
+    {
+      "titulo": "It has been getting worse, not staying still",
+      "que_pasa": "Real users saw an LCP of 4100 ms six months ago. Today they see 4800 ms. Layout shift went from 0.22 to 0.29 over the same period.",
+      "por_que_cuesta_dinero": "Whatever has been added since February is still being added. Without a guardrail, the next app install costs you the same again.",
+      "evidencia": {
+        "metrica": "CrUX 75th percentile LCP, real users, 6-month trend",
+        "valor": "4100 ms → 4800 ms",
+        "fuente": "CrUX History API (percentil 75, usuarios reales)",
+        "fecha": "2026-08-08"
+      },
+      "que_haria": "Put a budget check on the theme so a new app cannot ship without someone seeing what it costs.",
+      "impacto": "medio",
+      "esfuerzo_horas": 3
+    }
+  ],
+  "plan_3_semanas": [
+    {
+      "semana": 1,
+      "objetivo": "Take the weight out",
+      "tareas": [
+        "Migrate reviews to a single app and uninstall the other two",
+        "Rebuild the image pipeline with responsive srcset and WebP",
+        "Add font-display and drop the unused family"
+      ],
+      "resultado_esperado": "Mobile LCP under 3s and about 2 MB less on every page load."
+    },
+    {
+      "semana": 2,
+      "objetivo": "Get the critical path out of the way",
+      "tareas": [
+        "Defer the remaining third-party scripts behind first interaction",
+        "Inline the critical CSS and load the rest asynchronously",
+        "Remove the chained redirect in front of the homepage"
+      ],
+      "resultado_esperado": "Blocking time under 300 ms and a PageSpeed score in the 70s."
+    },
+    {
+      "semana": 3,
+      "objetivo": "Make it stay fixed",
+      "tareas": [
+        "Set explicit dimensions on every image to settle the layout shift",
+        "Add a performance budget check to the theme",
+        "Measure again together and write down the numbers"
+      ],
+      "resultado_esperado": "CLS under 0.1, mobile score above 85, and a baseline you can hold the next change against."
+    }
+  ],
+  "quick_win_regalado": {
+    "titulo": "Uninstall two of your three review apps",
+    "pasos": [
+      "Open Apps in your Shopify admin and find Loox and Yotpo.",
+      "Export the reviews from both to CSV before touching anything.",
+      "Import both CSVs into Judge.me, which accepts them directly.",
+      "Check a product page still shows every review, then uninstall Loox and Yotpo.",
+      "Run PageSpeed Insights on the same product page and compare."
+    ],
+    "mejora_estimada": "About 1200 ms less blocking on mobile",
+    "requiere_dev": false
+  },
+  "que_pasa_si_no_se_arregla": "Nothing dramatic happens on any single day, which is exactly why this sits unfixed for years. Real-user LCP has drifted from 4100 ms to 4800 ms in six months without anyone deciding to make the site slower. Each new app costs a little more, and the gap with competidor-uno.com widens quietly on the page where people decide whether to buy.",
+  "confianza": "alta",
+  "datos_faltantes": [
+    "Monthly revenue unknown, so the cost is expressed as a percentage rather than an amount."
+  ]
+}

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="se.metaTitle">Technical SEO sprint · Gabriel Arias</title>
+<meta name="description" data-i18n-content="se.metaDescription" content="Twenty-two technical checks decide whether Google can crawl, index and read your Shopify store. The free audit runs all 22 and tells you which you pass.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E1013'/%3E%3Cpath d='M17.5 4 8 18h6l-1.5 10L22 14h-6z' fill='%232DD48F'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" data-i18n-content="se.ogTitle" content="Technical SEO sprint · Gabriel Arias">
+<meta property="og:description" data-i18n-content="se.ogDescription" content="Every failed check green, or full refund. Never a promise about positions. Free 48-hour audit.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/i18n.js" defer></script>
+<script src="assets/main.js" defer></script>
+</head>
+<body>
+
+<a class="skip" href="#main" data-i18n="nav.skip">Skip to content</a>
+
+<header class="site-header is-solid">
+  <div class="site-header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__name">Gabriel Arias</span>
+      <span class="brand__role" data-i18n="se.brandRole">Shopify technical SEO</span>
+    </a>
+    <nav class="nav" data-i18n-aria="nav.primary" aria-label="Primary">
+      <a class="nav__link" href="speed.html" data-i18n="nav.speed">Speed</a>
+      <a class="nav__link nav__link--here" href="#checks" data-i18n="nav.seo">SEO</a>
+      <a class="nav__link" href="#plan" data-i18n="nav.plan">Plan</a>
+      <a class="nav__link" href="#faq" data-i18n="nav.faq">FAQ</a>
+      <div class="lang" role="group" aria-label="Language · Idioma" data-lang-switch>
+        <a class="lang__opt" href="?lang=en" hreflang="en" lang="en" data-lang="en" aria-current="true">EN</a>
+        <a class="lang__opt" href="?lang=es" hreflang="es" lang="es" data-lang="es">ES</a>
+      </div>
+      <a class="btn btn--primary btn--sm" href="#audit" data-i18n="se.navCta">Free SEO audit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="shell">
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="section hero">
+    <div>
+      <div class="mono-label hero__eyebrow" data-i18n="se.eyebrow">Shopify technical SEO · 30-day sprint</div>
+      <h1 class="h1" data-i18n="se.title">Shopify's defaults are built for shopping, not for indexing.</h1>
+      <p class="hero__lede" data-i18n="se.lede">Twenty-two technical checks decide whether Google can crawl, index and read your store correctly. Your store passes an unknown number of them. The free audit runs all twenty-two and tells you which.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href="#audit" data-i18n="se.cta">Get your free SEO audit</a>
+        <a class="link-quiet" href="#checks" data-i18n="se.link">See the 22 checks ↓</a>
+      </div>
+      <p class="hero__note" data-i18n="se.note">No keyword research, no backlinks, no promises about positions. Technical only — the part that is measurable from outside.</p>
+    </div>
+
+    <div class="card gauge">
+      <div class="mono-label gauge__label" data-i18n="se.gaugeLabel">This site · checks passed</div>
+      <div class="score">—<span class="score__total">/22</span></div>
+      <span class="badge badge--warn badge--md" data-i18n="se.gaugeBadge">▲ Awaiting first measured run</span>
+      <p class="gauge__note" data-i18n="se.gaugeNote">Filled by running the audit against this domain at build time, published with the raw JSON. Until then it shows nothing.</p>
+    </div>
+  </section>
+
+  <!-- ── Facts strip ──────────────────────────────────────────────────── -->
+  <section class="facts" data-i18n-aria="facts.aria" aria-label="At a glance">
+    <div class="fact">
+      <div class="mono-label" data-i18n="se.checksRun">Checks run</div>
+      <div class="fact__value">22</div>
+      <div class="fact__note" data-i18n="se.checksNote">Always 22 — unmeasurable is reported, never dropped</div>
+    </div>
+    <div class="fact">
+      <div class="mono-label" data-i18n="facts.turnaround">Turnaround</div>
+      <div class="fact__value" data-i18n="facts.turnaroundValue">48 h</div>
+      <div class="fact__note" data-i18n="facts.turnaroundNote2">From request to report</div>
+    </div>
+    <div class="fact">
+      <div class="mono-label" data-i18n="facts.sprint">Sprint length</div>
+      <div class="fact__value" data-i18n="facts.sprintValue">30 days</div>
+      <div class="fact__note" data-i18n="se.sprintNote">Four weeks — the last one is re-crawl and proof</div>
+    </div>
+    <div class="fact fact--divided">
+      <div class="mono-label" data-i18n="facts.guarantee">Guarantee</div>
+      <div class="fact__value fact__value--sans"><span class="diamond" aria-hidden="true">◆</span><span data-i18n="se.guaranteeValue">Every failed check green</span></div>
+      <div class="fact__note" data-i18n="se.guaranteeNote">Or full refund. Never a promise about positions.</div>
+    </div>
+  </section>
+
+  <!-- ── What a crawler receives ──────────────────────────────────────────
+       The template switch is a radio group plus CSS: no JavaScript, so it
+       works with main.js blocked exactly as it does with it. -->
+  <section class="section" id="reads">
+    <div class="section__eyebrow-row">
+      <div class="mono-label" data-i18n="se.readsEyebrow">What a crawler actually receives</div>
+      <div class="badge badge--warn badge--sm" data-i18n="se.readsBadge">▲ Illustrative pattern — not a measured store</div>
+    </div>
+    <h2 class="h2 section__title" data-i18n="se.readsTitle">Your product page, as Google reads it</h2>
+    <p class="section__lede" data-i18n="se.readsLede">Same page, same theme. On the left, the fields a crawler finds on a default Shopify template. On the right, the same fields after the sprint. Nothing here is content work — it is what the page declares about itself.</p>
+
+    <div class="reads">
+      <input class="reads__radio" type="radio" name="tpl" id="tpl-product" checked>
+      <input class="reads__radio" type="radio" name="tpl" id="tpl-collection">
+      <input class="reads__radio" type="radio" name="tpl" id="tpl-home">
+
+      <div class="reads__tabs" role="group" data-i18n-aria="se.tabsAria" aria-label="Template to inspect">
+        <label class="reads__tab" for="tpl-product" data-i18n="se.tabProduct">Product</label>
+        <label class="reads__tab" for="tpl-collection" data-i18n="se.tabCollection">Collection</label>
+        <label class="reads__tab" for="tpl-home" data-i18n="se.tabHome">Home</label>
+      </div>
+
+      <!-- Product -->
+      <div class="reads__panel" data-tpl="product">
+        <div class="reads__col reads__col--bad">
+          <div class="reads__head">
+            <span class="mono-label mono-label--bad" data-i18n="se.default">■ Default template</span>
+            <span class="reads__path">/collections/shoes/products/runner</span>
+          </div>
+          <dl class="reads__list">
+            <div class="reads__row"><dt>canonical</dt><dd><span class="reads__v reads__v--bad" data-i18n="rd.missing">missing</span><span class="reads__n" data-i18n="rd.pb1">Same page also served at /products/runner. Google picks one.</span></dd></div>
+            <div class="reads__row"><dt>title</dt><dd><span class="reads__v reads__v--warn">Runner – My Store</span><span class="reads__n" data-i18n="rd.pb2">Theme template, identical shape on every product.</span></dd></div>
+            <div class="reads__row"><dt>meta desc</dt><dd><span class="reads__v reads__v--bad" data-i18n="rd.missing">missing</span><span class="reads__n" data-i18n="rd.pb3">Google writes its own from the page body.</span></dd></div>
+            <div class="reads__row"><dt>h1</dt><dd><span class="reads__v reads__v--bad" data-i18n="rd.found2">2 found</span><span class="reads__n" data-i18n="rd.pb4">Product name plus the section heading above it.</span></dd></div>
+            <div class="reads__row"><dt>schema</dt><dd><span class="reads__v reads__v--bad">Product</span><span class="reads__n" data-i18n="rd.pb5">Variants need ProductGroup; price sits on the variant.</span></dd></div>
+            <div class="reads__row"><dt>breadcrumb</dt><dd><span class="reads__v reads__v--warn" data-i18n="rd.missing">missing</span><span class="reads__n" data-i18n="rd.pb6">No BreadcrumbList, so no path in the result.</span></dd></div>
+          </dl>
+        </div>
+        <div class="reads__col reads__col--good">
+          <div class="reads__head">
+            <span class="mono-label mono-label--good" data-i18n="se.after">● After the sprint</span>
+            <span class="reads__path">/collections/shoes/products/runner</span>
+          </div>
+          <dl class="reads__list">
+            <div class="reads__row"><dt>canonical</dt><dd><span class="reads__v reads__v--good">/products/runner</span><span class="reads__n" data-i18n="rd.pa1">Self-referencing, identical from both routes.</span></dd></div>
+            <div class="reads__row"><dt>title</dt><dd><span class="reads__v reads__v--good">Runner · road shoe · My Store</span><span class="reads__n" data-i18n="rd.pa2">Per-template pattern with the distinguishing field.</span></dd></div>
+            <div class="reads__row"><dt>meta desc</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.chars138">138 chars</span><span class="reads__n" data-i18n="rd.pa3">Written per template, inside the range Google shows.</span></dd></div>
+            <div class="reads__row"><dt>h1</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.found1">1 found</span><span class="reads__n" data-i18n="rd.pa4">One per page, the product name.</span></dd></div>
+            <div class="reads__row"><dt>schema</dt><dd><span class="reads__v reads__v--good">ProductGroup</span><span class="reads__n" data-i18n="rd.pa5">name, image, price, priceCurrency, availability.</span></dd></div>
+            <div class="reads__row"><dt>breadcrumb</dt><dd><span class="reads__v reads__v--good">BreadcrumbList</span><span class="reads__n" data-i18n="rd.pa6">Home › Shoes › Runner, matching the URL.</span></dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Collection -->
+      <div class="reads__panel" data-tpl="collection">
+        <div class="reads__col reads__col--bad">
+          <div class="reads__head">
+            <span class="mono-label mono-label--bad" data-i18n="se.default">■ Default template</span>
+            <span class="reads__path">/collections/shoes?sort_by=price&amp;filter=size-42</span>
+          </div>
+          <dl class="reads__list">
+            <div class="reads__row"><dt>canonical</dt><dd><span class="reads__v reads__v--bad" data-i18n="rd.self">self</span><span class="reads__n" data-i18n="rd.cb1">Every filter combination canonicalises to itself.</span></dd></div>
+            <div class="reads__row"><dt>title</dt><dd><span class="reads__v reads__v--bad">Shoes – My Store</span><span class="reads__n" data-i18n="rd.cb2">Same title on every filtered variant of this page.</span></dd></div>
+            <div class="reads__row"><dt>meta desc</dt><dd><span class="reads__v reads__v--warn" data-i18n="rd.missing">missing</span><span class="reads__n" data-i18n="rd.cb3">Nothing distinguishes one variant from another.</span></dd></div>
+            <div class="reads__row"><dt>h1</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.found1">1 found</span><span class="reads__n" data-i18n="rd.cb4">Correct.</span></dd></div>
+            <div class="reads__row"><dt>schema</dt><dd><span class="reads__v reads__v--warn" data-i18n="rd.missing">missing</span><span class="reads__n" data-i18n="rd.cb5">No ItemList or CollectionPage.</span></dd></div>
+            <div class="reads__row"><dt>crawlable</dt><dd><span class="reads__v reads__v--bad" data-i18n="rd.yes">yes</span><span class="reads__n" data-i18n="rd.cb6">Filters and sorting are reachable URLs spending budget.</span></dd></div>
+          </dl>
+        </div>
+        <div class="reads__col reads__col--good">
+          <div class="reads__head">
+            <span class="mono-label mono-label--good" data-i18n="se.after">● After the sprint</span>
+            <span class="reads__path">/collections/shoes?sort_by=price&amp;filter=size-42</span>
+          </div>
+          <dl class="reads__list">
+            <div class="reads__row"><dt>canonical</dt><dd><span class="reads__v reads__v--good">/collections/shoes</span><span class="reads__n" data-i18n="rd.ca1">Filtered variants point at the clean collection.</span></dd></div>
+            <div class="reads__row"><dt>title</dt><dd><span class="reads__v reads__v--good">Road shoes · My Store</span><span class="reads__n" data-i18n="rd.ca2">One title for the page that should rank.</span></dd></div>
+            <div class="reads__row"><dt>meta desc</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.chars124">124 chars</span><span class="reads__n" data-i18n="rd.ca3">Written for the collection, not the filter.</span></dd></div>
+            <div class="reads__row"><dt>h1</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.found1">1 found</span><span class="reads__n" data-i18n="rd.ca4">Unchanged.</span></dd></div>
+            <div class="reads__row"><dt>schema</dt><dd><span class="reads__v reads__v--good">ItemList</span><span class="reads__n" data-i18n="rd.ca5">Products in the order the page shows them.</span></dd></div>
+            <div class="reads__row"><dt>crawlable</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.cleanOnly">clean only</span><span class="reads__n" data-i18n="rd.ca6">Parameter variants no longer compete for budget.</span></dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Home -->
+      <div class="reads__panel" data-tpl="home">
+        <div class="reads__col reads__col--bad">
+          <div class="reads__head">
+            <span class="mono-label mono-label--bad" data-i18n="se.default">■ Default template</span>
+            <span class="reads__path">/</span>
+          </div>
+          <dl class="reads__list">
+            <div class="reads__row"><dt>robots.txt</dt><dd><span class="reads__v reads__v--warn" data-i18n="rd.default">default</span><span class="reads__n" data-i18n="rd.hb1">Shopify default. Its last group blocks a crawler named Nutch, which trips careless tools.</span></dd></div>
+            <div class="reads__row"><dt>sitemap</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.declared">declared</span><span class="reads__n" data-i18n="rd.hb2">Present in robots.txt.</span></dd></div>
+            <div class="reads__row"><dt>X-Robots-Tag</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.absent">absent</span><span class="reads__n" data-i18n="rd.hb3">Nothing in the response header.</span></dd></div>
+            <div class="reads__row"><dt>schema</dt><dd><span class="reads__v reads__v--bad" data-i18n="rd.missing">missing</span><span class="reads__n" data-i18n="rd.hb4">No Organization or WebSite block.</span></dd></div>
+            <div class="reads__row"><dt>og:image</dt><dd><span class="reads__v reads__v--warn" data-i18n="rd.missing">missing</span><span class="reads__n" data-i18n="rd.hb5">Links to the store render without a preview.</span></dd></div>
+            <div class="reads__row"><dt>llms.txt</dt><dd><span class="reads__v reads__v--warn" data-i18n="rd.absent">absent</span><span class="reads__n" data-i18n="rd.hb6">Informational only; AI crawlers are starting to read it.</span></dd></div>
+          </dl>
+        </div>
+        <div class="reads__col reads__col--good">
+          <div class="reads__head">
+            <span class="mono-label mono-label--good" data-i18n="se.after">● After the sprint</span>
+            <span class="reads__path">/</span>
+          </div>
+          <dl class="reads__list">
+            <div class="reads__row"><dt>robots.txt</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.reviewed">reviewed</span><span class="reads__n" data-i18n="rd.ha1">The * group verified line by line, nothing important blocked.</span></dd></div>
+            <div class="reads__row"><dt>sitemap</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.declared">declared</span><span class="reads__n" data-i18n="rd.ha2">Unchanged.</span></dd></div>
+            <div class="reads__row"><dt>X-Robots-Tag</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.absent">absent</span><span class="reads__n" data-i18n="rd.ha3">Checked on all three templates, not just this one.</span></dd></div>
+            <div class="reads__row"><dt>schema</dt><dd><span class="reads__v reads__v--good">Organization</span><span class="reads__n" data-i18n="rd.ha4">Name, logo, URL and profiles.</span></dd></div>
+            <div class="reads__row"><dt>og:image</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.set">set</span><span class="reads__n" data-i18n="rd.ha5">Title and image on every shared link.</span></dd></div>
+            <div class="reads__row"><dt>llms.txt</dt><dd><span class="reads__v reads__v--good" data-i18n="rd.published">published</span><span class="reads__n" data-i18n="rd.ha6">Written, and marked informational in the report.</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Platform defaults ────────────────────────────────────────────── -->
+  <section class="section section--rule" id="defaults">
+    <div class="mono-label section__eyebrow" data-i18n="se.defEyebrow">Platform properties, not statistics</div>
+    <h2 class="h2 section__title" data-i18n="se.defTitle">Five things Shopify does by default that Google reads badly</h2>
+    <p class="section__lede" data-i18n="se.defLede">Every one of these is verifiable on your own store in a browser, right now. None of them is a claim about your rankings.</p>
+
+    <ol class="anatomy anatomy--flat">
+      <li class="anatomy__item">
+        <span class="anatomy__n">01</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="se.d1t">Every product lives at two URLs</h3>
+          <p class="anatomy__text"><code class="code">/products/x</code><span data-i18n="se.d1a"> and </span><code class="code">/collections/y/products/x</code><span data-i18n="se.d1b"> both serve the same page. Which one Google keeps depends entirely on the canonical tag your theme emits.</span></p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">02</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="se.d2t">Filters and sorting mint crawlable variants</h3>
+          <p class="anatomy__text" data-i18n="se.d2">Each filter combination on a collection is a URL a crawler can reach and spend its budget on. On a catalogue of any size that is thousands of near-identical pages competing with the one you want ranked.</p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">03</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="se.d3t">One title pattern, hundreds of pages</h3>
+          <p class="anatomy__text" data-i18n="se.d3">Themes build the title and meta description from a template. It is consistent, and it is why the same phrasing repeats across your whole catalogue with nothing distinguishing one page from the next.</p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">04</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="se.d4t">Variant products need ProductGroup</h3>
+          <p class="anatomy__text"><span data-i18n="se.d4a">Google asks for </span><code class="code">ProductGroup</code><span data-i18n="se.d4b"> where a product has variants, with price and availability on the variant. Many themes still emit a bare </span><code class="code">Product</code><span data-i18n="se.d4c"> and lose the rich result.</span></p>
+        </div>
+      </li>
+      <li class="anatomy__item">
+        <span class="anatomy__n">05</span>
+        <div>
+          <h3 class="anatomy__title" data-i18n="se.d5t">A noindex can arrive by HTTP header</h3>
+          <p class="anatomy__text"><code class="code">X-Robots-Tag</code><span data-i18n="se.d5"> lives in the response, not in the theme. You can read every template you own and never see the instruction that is keeping a page out of the index.</span></p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ── The 22 checks ────────────────────────────────────────────────── -->
+  <section class="section section--rule" id="checks">
+    <div class="section__eyebrow-row">
+      <div class="mono-label" data-i18n="se.checksEyebrow">The audit · four groups</div>
+      <div class="mono-label">6 + 4 + 5 + 7 = 22</div>
+    </div>
+    <h2 class="h2 section__title" data-i18n="se.checksTitle">Twenty-two checks, and the whole list is public</h2>
+    <p class="section__lede" data-i18n="se.checksLede">You can repeat every one of these from your own browser. A check that cannot be run on your store is reported as unmeasurable — it is never quietly dropped to make the score look better, which is why the total is always twenty-two.</p>
+
+    <div class="legend">
+      <span class="badge badge--good badge--sm" data-i18n="se.pass">● Pass</span>
+      <span class="badge badge--bad badge--sm" data-i18n="se.fail">■ Fail</span>
+      <span class="badge badge--warn badge--sm" data-i18n="se.warn">▲ Warning</span>
+      <span class="badge badge--outline badge--sm" data-i18n="se.na">– Not applicable</span>
+      <span class="badge badge--outline badge--sm badge--muted" data-i18n="se.unmeasurable">— Unmeasurable</span>
+      <span class="legend__note" data-i18n="se.legendNote">Not applicable and unmeasurable do not count against the health percentage. A single-market store without hreflang has no deficiency — it has a check that does not apply to it.</span>
+    </div>
+
+    <div class="checks">
+      <div class="checks__group">
+        <div class="checks__head">
+          <div>
+            <div class="checks__title" data-i18n="groups.crawl">Crawling and indexing</div>
+            <div class="checks__why" data-i18n="se.g1why">If Google cannot get in, everything after this is decoration.</div>
+          </div>
+          <div class="mono-label checks__count"><span data-i18n="se.checksWord">6 checks</span> · — <span data-i18n="se.passedWord">passed</span></div>
+        </div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">robots_txt</span><span class="checks__what" data-i18n="se.c1">It exists and is reachable</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">robots_bloqueos</span><span class="checks__what" data-i18n="se.c2">It does not block /products, /collections or /pages</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">sitemap_declarado</span><span class="checks__what" data-i18n="se.c3">A Sitemap: line in robots.txt</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">sitemap_xml</span><span class="checks__what" data-i18n="se.c4">The index is served, with its sections</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">noindex</span><span class="checks__what" data-i18n="se.c5">Meta robots and X-Robots-Tag across all three templates</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">error_404</span><span class="checks__what" data-i18n="se.c6">An invented URL returns a real 404, not a soft one</span></div>
+      </div>
+
+      <div class="checks__group">
+        <div class="checks__head">
+          <div>
+            <div class="checks__title" data-i18n="groups.dupes">Duplicate content</div>
+            <div class="checks__why" data-i18n="se.g2why">Shopify's speciality: the same page reachable from several routes.</div>
+          </div>
+          <div class="mono-label checks__count"><span data-i18n="se.checksWord4">4 checks</span> · — <span data-i18n="se.passedWord">passed</span></div>
+        </div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">canonical_presente</span><span class="checks__what" data-i18n="se.c7">A canonical on all three templates</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">canonical_autoreferente</span><span class="checks__what" data-i18n="se.c8">It points at the page itself</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">ruta_duplicada</span><span class="checks__what" data-i18n="se.c9">/collections/x/products/y canonicalises to /products/y</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">hreflang</span><span class="checks__what" data-i18n="se.c10">Coherent, with x-default present</span></div>
+      </div>
+
+      <div class="checks__group">
+        <div class="checks__head">
+          <div>
+            <div class="checks__title" data-i18n="groups.meta">Page metadata</div>
+            <div class="checks__why" data-i18n="se.g3why">What the result actually shows, and what tells two pages apart.</div>
+          </div>
+          <div class="mono-label checks__count"><span data-i18n="se.checksWord5">5 checks</span> · — <span data-i18n="se.passedWord">passed</span></div>
+        </div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">title_presente</span><span class="checks__what" data-i18n="se.c11">Present, between 15 and 65 characters</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">title_unico</span><span class="checks__what" data-i18n="se.c12">Different on each template</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">meta_description</span><span class="checks__what" data-i18n="se.c13">Present, between 70 and 160 characters</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">h1_unico</span><span class="checks__what" data-i18n="se.c14">Exactly one per template</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">alt_imagenes</span><span class="checks__what" data-i18n="se.c15">The alt attribute is declared — an empty alt on a decorative image is correct</span></div>
+      </div>
+
+      <div class="checks__group">
+        <div class="checks__head">
+          <div>
+            <div class="checks__title" data-i18n="groups.rich">Rich results and AI search</div>
+            <div class="checks__why" data-i18n="se.g4why">Structured data is how a listing becomes a result with price, stock and a path.</div>
+          </div>
+          <div class="mono-label checks__count"><span data-i18n="se.checksWord7">7 checks</span> · — <span data-i18n="se.passedWord">passed</span></div>
+        </div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">schema_product</span><span class="checks__what" data-i18n="se.c16">Product or ProductGroup with name, image, price, priceCurrency, availability</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">schema_breadcrumb</span><span class="checks__what" data-i18n="se.c17">BreadcrumbList on the product page</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">schema_organization</span><span class="checks__what" data-i18n="se.c18">Organization or WebSite on the home</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">schema_coleccion</span><span class="checks__what" data-i18n="se.c19">ItemList or CollectionPage on the collection</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">open_graph</span><span class="checks__what" data-i18n="se.c20">og:title and og:image</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">json_ld_valido</span><span class="checks__what" data-i18n="se.c21">No broken JSON-LD block</span></div>
+        <div class="checks__row"><span class="checks__state">—</span><span class="checks__id">llms_txt</span><span class="checks__what" data-i18n="se.c22">Present — reported as informational</span></div>
+      </div>
+    </div>
+
+    <div class="notdo">
+      <div class="mono-label" data-i18n="se.notdoLabel">What the audit does not do</div>
+      <p data-i18n="se.notdoText">No keywords, no backlinks, no search intent, no content quality. All of that needs your Search Console and paid APIs, and cannot be measured from outside without inventing. It is listed as missing data in every report rather than guessed at.</p>
+    </div>
+  </section>
+
+  <!-- ── The sprint ───────────────────────────────────────────────────── -->
+  <section class="section section--rule" id="plan">
+    <div class="mono-label section__eyebrow" data-i18n="se.planEyebrow">The sprint · 30 days</div>
+    <h2 class="h2 section__title" data-i18n="se.planTitle">Four weeks, and the fourth one is the proof</h2>
+    <p class="section__lede" data-i18n="se.planLede">A schema change nobody has re-crawled is deployed, not finished. The last week exists because the work is not done until Google has come back and I can show you the before and after.</p>
+
+    <ol class="steps steps--plan">
+      <li class="card step">
+        <span class="step__n step__n--active">01</span>
+        <div class="step__title" data-i18n="groups.crawl">Crawling and indexing</div>
+        <div class="step__when" data-i18n="week.1">Week 1</div>
+        <p class="step__text" data-i18n="se.w1Text">robots.txt, sitemap, noindex in every template, real 404s. If Google cannot get in, the rest is decoration.</p>
+      </li>
+      <li class="card step">
+        <span class="step__n">02</span>
+        <div class="step__title" data-i18n="groups.dupes">Duplicates</div>
+        <div class="step__when" data-i18n="week.2">Week 2</div>
+        <p class="step__text" data-i18n="se.w2Text">Canonicals, the two product routes, filter and sort parameters, hreflang if you sell in more than one market.</p>
+      </li>
+      <li class="card step">
+        <span class="step__n">03</span>
+        <div class="step__title" data-i18n="se.w3">Structured data and metadata</div>
+        <div class="step__when" data-i18n="week.3">Week 3</div>
+        <p class="step__text" data-i18n="se.w3Text">ProductGroup with price and availability, breadcrumbs, organisation, collection lists, titles and descriptions per template.</p>
+      </li>
+      <li class="card step step--active">
+        <span class="step__n step__n--active">04</span>
+        <div class="step__title" data-i18n="se.w4">Re-crawl and proof</div>
+        <div class="step__when" data-i18n="week.4">Week 4</div>
+        <p class="step__text" data-i18n="se.w4Text">The audit runs again. Every check that failed is green, or the sprint is not finished. You get both runs side by side.</p>
+      </li>
+    </ol>
+
+    <div class="plans plans--pair">
+      <div class="card plan">
+        <div>
+          <div class="mono-label plan__kind" data-i18n="se.auditKind">SEO audit</div>
+          <div class="plan__price" data-i18n="plans.auditPrice">Free</div>
+          <div class="plan__term" data-i18n="plans.auditTerm">48 hours</div>
+        </div>
+        <ul class="ticks">
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="se.audit1">All 22 checks, with the state of each</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="se.audit2">Findings anchored to the checks that failed</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="se.audit3">The four-week plan, yours to hand to anyone</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="plans.audit4">One fix you can apply today, without me</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="plans.audit5">A three-minute walkthrough on video</span></li>
+        </ul>
+        <a class="btn btn--secondary" href="#audit" data-i18n="se.auditCta">Request the SEO audit</a>
+      </div>
+
+      <div class="card card--brand plan">
+        <span class="plan__flag" data-i18n="plans.flag">Start here</span>
+        <div>
+          <div class="mono-label plan__kind" data-i18n="se.sprintKind">Technical SEO sprint</div>
+          <div class="plan__price plan__price--empty">€ —</div>
+          <div class="badge badge--warn badge--sm plan__badge" data-i18n="plans.priceBadge">▲ Set price before publish</div>
+          <div class="plan__term" data-i18n="se.sprintTerm">30 days · four weeks</div>
+        </div>
+        <ul class="ticks">
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="se.sprint1">Every failed check fixed, in your theme</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="se.sprint2">Canonicals, routes and parameters sorted out</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="se.sprint3">ProductGroup, breadcrumbs and collection schema</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="se.sprint4">Re-crawl in week four, with both runs published</span></li>
+        </ul>
+        <div class="warranty">
+          <span class="diamond" aria-hidden="true">◆</span>
+          <span data-i18n="se.warranty">Every failed check green, or full refund</span>
+        </div>
+        <div class="never">
+          <span class="never__flag" data-i18n="se.neverFlag">▲ Never promised</span>
+          <span class="never__text" data-i18n="se.neverText">Positions, traffic or revenue. The fixes ship inside the month; when Google re-crawls and re-ranks is not mine to promise.</span>
+        </div>
+        <a class="btn btn--primary" href="#audit" data-i18n="plans.sprintCta">Start with the free audit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────────────────────── -->
+  <section class="section section--rule" id="faq">
+    <div class="mono-label section__eyebrow" data-i18n="faq.eyebrow">FAQ</div>
+    <h2 class="h2 section__title section__title--last" data-i18n="faq.title">Before you ask</h2>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q"><span data-i18n="se.q1">Will this get me to page one?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a" data-i18n="se.a1">Placeholder. No, and anyone who promises it is selling something else. This makes your store correctly crawlable, indexable and readable. What you rank for after that depends on your content and your market — neither of which I am touching.</p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q"><span data-i18n="se.q2">Do I need the speed sprint too?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a"><span data-i18n="se.a2a">Placeholder. They are sold separately and neither depends on the other. If you are choosing, start with </span><a href="speed.html" data-i18n="se.a2link">speed</a><span data-i18n="se.a2b"> when your traffic is already there, and with SEO when it is not.</span></p>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q"><span data-i18n="se.q3">What counts as a failed check?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a" data-i18n="se.a3">Placeholder. The audit lists each of the 22 with its state before we start. The guarantee covers exactly the ones marked as failing in that first run — agreed in writing, no moving target.</p>
+      </details>
+      <details class="faq__item faq__item--last">
+        <summary class="faq__q"><span data-i18n="se.q4">Do you need my Search Console?</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <p class="faq__a" data-i18n="se.a4">Placeholder. Not for the audit — everything in it is measured from outside. During the sprint it helps for the re-crawl in week four, but it is not required.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ── Audit CTA ────────────────────────────────────────────────────── -->
+  <section class="section section--rule" id="audit">
+    <div class="card cta">
+      <h2 class="h2 cta__title" data-i18n="se.ctaTitle">Find out how many of the 22 you are passing</h2>
+      <p class="cta__lede" data-i18n="se.ctaLede">All 22 checks, findings anchored to the ones that fail, and a fix you can apply yourself. Within 48 hours, no call required.</p>
+      <a class="btn btn--primary btn--lg" data-i18n="se.cta" data-i18n-href="cta.seoMailto" href="mailto:gabo5612@gmail.com?subject=Free%20Shopify%20SEO%20audit&amp;body=Store%20URL%3A%20">Get your free SEO audit</a>
+      <div class="cta__warranty"><span class="diamond" aria-hidden="true">◆</span><span data-i18n="se.warranty">Every failed check green, or full refund</span></div>
+      <p class="cta__cross"><span data-i18n="se.crossA">Looking for speed instead? </span><a href="speed.html" data-i18n="se.crossLink">The speed sprint is here</a><span data-i18n="se.crossB">.</span></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="foot-brand">
+      <a class="foot-brand__name" href="index.html">Gabriel Arias</a>
+      <span class="mono-label" data-i18n="brand.role">Shopify performance &amp; SEO</span>
+    </div>
+    <div class="foot-links">
+      <a href="speed.html" data-i18n="foot.speed">Speed sprint</a>
+      <a href="seo.html" data-i18n="foot.seo">SEO sprint</a>
+      <a class="foot-links__muted" href="index.html" data-i18n="foot.home">Home</a>
+    </div>
+    <div class="foot-links">
+      <a href="mailto:gabo5612@gmail.com">gabo5612@gmail.com</a>
+      <a href="https://www.linkedin.com/in/gabriel-oniel-arias/" rel="me noopener">LinkedIn ↗</a>
+      <a class="foot-links__muted" href="https://github.com/gabo5612/" rel="me noopener">GitHub ↗</a>
+    </div>
+    <div class="foot-copy">© 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>

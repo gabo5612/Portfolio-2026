@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Análisis de auditoría SEO — salida de la etapa ③",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "diagnostico_una_linea",
+    "hallazgos",
+    "plan_4_semanas",
+    "quick_win_regalado",
+    "que_no_promete",
+    "confianza",
+    "datos_faltantes"
+  ],
+  "properties": {
+    "idioma": {
+      "type": "string",
+      "description": "Código ISO del idioma del informe. Debe ser el del cliente.",
+      "default": "en"
+    },
+    "diagnostico_una_linea": {
+      "type": "string",
+      "description": "El titular, con un recuento sacado de `resumen`. Sin jerga y sin dinero.",
+      "maxLength": 200
+    },
+    "hallazgos": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "Máximo 5, y cada uno anclado a una comprobación que falló.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "titulo", "que_pasa", "por_que_importa",
+          "evidencia", "que_haria", "verificable_como", "impacto", "esfuerzo_horas"
+        ],
+        "properties": {
+          "titulo": { "type": "string", "maxLength": 90 },
+          "que_pasa": { "type": "string", "description": "2 frases, sin jerga." },
+          "por_que_importa": {
+            "type": "string",
+            "description": "Consecuencia observable por el cliente. Nunca dinero, tráfico ni posiciones."
+          },
+          "evidencia": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["comprobacion", "valor", "fuente", "fecha"],
+            "description": "Sin una comprobación fallida detrás, el hallazgo no existe.",
+            "properties": {
+              "comprobacion": {
+                "type": "string",
+                "description": "El `id` exacto de una entrada de `comprobaciones` con estado falla o aviso."
+              },
+              "valor": { "type": "string", "description": "Copiado literalmente del campo `valor` de esa comprobación." },
+              "fuente": { "type": "string" },
+              "fecha": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+            }
+          },
+          "que_haria": { "type": "string", "description": "La acción concreta, con archivo del tema o pantalla de Shopify." },
+          "verificable_como": {
+            "type": "string",
+            "description": "Cómo lo comprueba el cliente él solo, con herramientas gratuitas."
+          },
+          "impacto": { "type": "string", "enum": ["alto", "medio", "bajo"] },
+          "esfuerzo_horas": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "plan_4_semanas": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "description": "El alcance del sprint de SEO. Cuatro semanas: la última es re-rastreo y verificación, no trabajo nuevo.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["semana", "objetivo", "tareas", "resultado_esperado"],
+        "properties": {
+          "semana": { "type": "integer", "minimum": 1, "maximum": 4 },
+          "objetivo": { "type": "string" },
+          "tareas": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "resultado_esperado": { "type": "string" },
+          "verificable_como": {
+            "type": ["string", "null"],
+            "description": "Cómo se comprueba el cierre de la semana. Herramientas públicas."
+          }
+        }
+      }
+    },
+    "quick_win_regalado": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["titulo", "pasos", "mejora_estimada", "requiere_dev"],
+      "description": "Algo que puede aplicar hoy, solo, sin ti.",
+      "properties": {
+        "titulo": { "type": "string" },
+        "pasos": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "mejora_estimada": {
+          "type": "string",
+          "description": "En estado técnico, no en tráfico. 'La colección deja de heredar la descripción de la home.'"
+        },
+        "requiere_dev": { "type": "boolean" }
+      }
+    },
+    "que_no_promete": {
+      "type": "string",
+      "description": "Obligatorio. Qué NO garantiza el sprint: posiciones, plazos de indexación, volumen de búsqueda. Se escribe antes de cobrar, no después."
+    },
+    "que_pasa_si_no_se_arregla": {
+      "type": "string",
+      "description": "Consecuencia, sin dramatismo y sin cifras inventadas."
+    },
+    "confianza": { "type": "string", "enum": ["alta", "media", "baja"] },
+    "datos_faltantes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Todo lo que no estaba en la entrada acaba aquí, no inventado."
+    }
+  }
+}

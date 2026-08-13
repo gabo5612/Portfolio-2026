@@ -1,0 +1,92 @@
+# Fase 2 — el lote nocturno.
+#
+# Un CSV con 20 URLs entra, 20 JSON salen como artefacto. Por la mañana
+# descargas el resumen, lo ordenas por lead score y grabas los Looms.
+#
+# Corre en GitHub Actions porque los Workers de Cloudflare dan 10 ms de CPU
+# por invocación: suficiente para encolar y servir, no para parsear HTML.
+#
+# Requisito: guarda PAGESPEED_API_KEY en Settings → Secrets → Actions.
+# Sin ella, PSI devuelve 429 casi de inmediato y todo el lote falla.
+
+name: Auditorías en lote
+
+on:
+  workflow_dispatch:
+    inputs:
+      cola:
+        description: 'Ruta del CSV de la cola'
+        required: false
+        default: 'audit-engine/queue.csv'
+      concurrencia:
+        description: 'Auditorías en paralelo'
+        required: false
+        default: '3'
+  schedule:
+    # 03:00 UTC de lunes a viernes. Los informes esperan hechos al levantarte.
+    - cron: '0 3 * * 1-5'
+
+permissions:
+  contents: read
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Comprobar que hay cola
+        id: cola
+        run: |
+          COLA="${{ github.event.inputs.cola || 'audit-engine/queue.csv' }}"
+          if [ ! -f "$COLA" ]; then
+            echo "No existe $COLA — nada que auditar."
+            echo "hay_cola=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "hay_cola=true" >> "$GITHUB_OUTPUT"
+            echo "ruta=$COLA" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Auditar el lote
+        if: steps.cola.outputs.hay_cola == 'true'
+        env:
+          PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
+          CRUX_API_KEY: ${{ secrets.CRUX_API_KEY }}
+        working-directory: audit-engine
+        run: |
+          node bin/batch.js "${{ github.workspace }}/${{ steps.cola.outputs.ruta }}" \
+            --out auditorias \
+            --concurrencia "${{ github.event.inputs.concurrencia || '3' }}"
+
+      - name: Subir las auditorías
+        if: steps.cola.outputs.hay_cola == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditorias-${{ github.run_number }}
+          path: audit-engine/auditorias/
+          retention-days: 30
+
+      # El resumen en el propio log del job: abres Actions desde el móvil y
+      # ya sabes a quién grabar primero, sin descargar nada.
+      - name: Resumen
+        if: steps.cola.outputs.hay_cola == 'true'
+        working-directory: audit-engine
+        run: |
+          {
+            echo '## Auditorías listas para revisar'
+            echo ''
+            echo 'Orden sugerido para grabar los Looms:'
+            echo ''
+            echo '```'
+            column -t -s, auditorias/resumen.csv
+            echo '```'
+            echo ''
+            echo 'Siguiente paso: etapa ③ (análisis) y luego `bin/report.js`.'
+            echo 'Nada se envía sin tu aprobación.'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,24 @@
+{
+  "_nota": "Respuesta de queryHistoryRecord de la CrUX History API, recortada a lo que lee crux.js. Números sintéticos.",
+  "record": {
+    "key": { "formFactor": "PHONE", "origin": "https://tienda.test" },
+    "metrics": {
+      "largest_contentful_paint": {
+        "percentilesTimeseries": { "p75s": [4100, 4250, 4400, 4600, 4800] }
+      },
+      "interaction_to_next_paint": {
+        "percentilesTimeseries": { "p75s": [320, 310, 300, 290, 280] }
+      },
+      "cumulative_layout_shift": {
+        "percentilesTimeseries": { "p75s": ["0.22", "0.23", "0.22", "0.23", "0.22"] }
+      }
+    },
+    "collectionPeriods": [
+      { "firstDate": { "year": 2026, "month": 2, "day": 15 }, "lastDate": { "year": 2026, "month": 3, "day": 14 } },
+      { "firstDate": { "year": 2026, "month": 3, "day": 15 }, "lastDate": { "year": 2026, "month": 4, "day": 11 } },
+      { "firstDate": { "year": 2026, "month": 4, "day": 12 }, "lastDate": { "year": 2026, "month": 5, "day": 9 } },
+      { "firstDate": { "year": 2026, "month": 5, "day": 10 }, "lastDate": { "year": 2026, "month": 6, "day": 6 } },
+      { "firstDate": { "year": 2026, "month": 7, "day": 12 }, "lastDate": { "year": 2026, "month": 8, "day": 8 } }
+    ]
+  }
+}

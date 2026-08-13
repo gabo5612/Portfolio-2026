@@ -1,0 +1,205 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What this is
+
+A three-page marketing site for Gabriel Arias, a Shopify performance and technical-SEO consultant. Repo `gabo5612/Portfolio-2026`. It replaces an older React portfolio — the repositioning dropped the experience timeline, skills grid and personal projects in favour of two service offers, sold separately.
+
+Two separate things live here: the public marketing site, and `audit-engine/`, the internal tooling that produces the audit the site sells.
+
+## Commands
+
+The site has no build step. `audit-engine/` has a test suite (`node:test`,
+no dependencies): the network is intercepted at `fetch`, so the collectors
+run their real code paths against recorded PSI and CrUX payloads.
+
+```bash
+python3 -m http.server 8000     # serve the site; file:// works too
+
+cd audit-engine
+npm test                        # node:test, nothing to install
+export PAGESPEED_API_KEY=...    # without it PSI returns 429 immediately
+node bin/audit.js tienda.com --competidores a.com,b.com   # fase 0, velocidad
+node bin/seo.js tienda.com                                # fase 0, SEO — sin API key
+node bin/batch.js queue.csv --out auditorias/             # fase 2
+node bin/batch.js queue.csv --seo --out auditorias-seo/   # fase 2, SEO
+node bin/report.js auditorias/x.json analisis/x.json --out informes/
+```
+
+`bin/report.js` picks the speed or SEO template from the audit's `tipo`
+field; there is no second command and no flag to remember.
+
+To exercise the report template without spending PSI quota, render the fixtures:
+`node bin/report.js fixtures/ejemplo.audit.json fixtures/ejemplo.analysis.json --out /tmp/r`.
+
+## Architecture — the site
+
+Three pages, one shared stylesheet and two shared scripts. No build step.
+
+| File | Role |
+|---|---|
+| `index.html` | The hub: both tracks side by side, the audit anatomy, process, FAQ. |
+| `speed.html` | The speed sprint: filmstrip, revenue calculator, three-week plan, pricing. |
+| `seo.html` | The SEO sprint: crawler-read demo, the 22 checks, four-week plan, pricing. |
+| `assets/styles.css` | Design tokens in `:root`, then BEM-ish component classes. |
+| `assets/i18n.js` | Language detection and the Spanish dictionary for all three pages. |
+| `assets/main.js` | Three IIFEs: sticky header, load filmstrip, revenue calculator. |
+
+**Two tracks, sold separately.** Speed and technical SEO are separate 30-day
+sprints with separate guarantees (`PageSpeed 85+` vs `every failed check
+green`). Never blur them, never offer a bundle: the copy says explicitly that
+running both in one month would force cutting one short, and then neither
+guarantee is defensible.
+
+The hub carries a compact filmstrip; the full one with its readout and the
+calculator live on `speed.html`. `main.js` guards every hook, so the same file
+serves all three pages and does nothing on the one that lacks a given control.
+
+**The SEO template switch is CSS, not JS.** `seo.html`'s crawler-read demo is a
+radio group plus sibling selectors, so it works with `main.js` blocked exactly
+as it does with it — same reasoning as the FAQ's native `<details>`. Do not
+convert it to a script.
+
+**No framework, deliberately.** The site's pitch is page speed and its hero is a PageSpeed gauge, so shipping a bundle would undercut the product. Keep it dependency-free. The only external request is the Google Fonts stylesheet (IBM Plex Sans + Mono).
+
+**JS only refines.** Every section is legible and usable with `main.js` blocked: the filmstrip renders a valid mid-load state from inline `opacity` attributes, the calculator ships a correct default result in the HTML, and the FAQ is native `<details>`. Static markup and the JS initial render must agree — at the default scrubber value of `30` (3.0s) that means before-header visible, before-hero/grid hidden, all after-frames visible. Never introduce markup that only becomes correct after JS runs.
+
+JS reads the DOM through `data-*` hooks (`data-scrub`, `data-leak`, `data-frame="bHero"`, …), never through class names. Classes are for styling; renaming one must not break behaviour.
+
+**English is the source of truth, Spanish is a layer.** The page ships fully
+written in English; `assets/i18n.js` swaps in Spanish over it, keyed by
+`data-i18n` (and `-aria`, `-content`, `-href` for attributes). Consequences
+worth keeping in mind:
+
+- A key missing from the Spanish dictionary falls back to whatever the markup
+  says, so a half-translated page degrades to English, never to blanks.
+- Adding copy means adding the attribute *and* the key. `node -e` over both
+  files is the check: every `data-i18n*` value across the three pages must
+  exist in `ES`, and nothing in `ES` should be unreachable.
+- Strings assembled in JS (the leak formula, the leak CTA) live in `main.js`
+  in English as the fallback argument to `i18n.t()`, with `{placeholders}`
+  the dictionary reuses verbatim.
+- Numbers go through `i18n.num` / `i18n.money`, so the same figure reads
+  `$34,000` in English and `$34.000` in Spanish — matching `money.js`, which
+  already formats per locale. The amounts themselves never change.
+- The switch in the header only overrides the guess; order is `?lang=`, then
+  the stored choice, then `navigator.languages`, then English. It is a pair
+  of real `?lang=` links, so it still works if the click handler never binds.
+- The English render must stay byte-identical to the static markup, the
+  filmstrip clock and leak formula included. That is the no-JS invariant
+  above, and it is the reason English is not itself a dictionary.
+
+Not translated on purpose: the brand name, the plan prices, `Milliseconds
+Make Millions` (a report title), the schema type names a client will see in
+their own HTML (`Product`, `ProductGroup`, `BreadcrumbList`, `ItemList`,
+`Organization`), the check ids, and the mono placeholders. Single URL per
+page, so there are no `hreflang` tags — add them alongside the real domain if
+the Spanish version ever needs to be indexed separately.
+
+## Architecture — audit-engine
+
+Zero dependencies, Node 18+, ESM. Implements phases 0–2 of
+`workflow-auditoria-automatizada.md` (the spec doc, kept outside this repo).
+Its code and comments are in Spanish, matching the spec and its only user.
+The site is written in English — its buyers are US/UK/CA/AU — and serves
+Spanish to Spanish-speaking visitors through `assets/i18n.js`. Full operating
+manual in `audit-engine/README.md`.
+
+Pipeline: `bin/audit.js` → raw JSON → **you paste it into Claude with
+`analysis/prompt.md`** → analysis JSON → `bin/report.js` → self-contained
+HTML report. `bin/batch.js` runs the first step over a CSV; the GitHub
+Actions workflow runs the batch nightly.
+
+**Two audits, two pipelines, shared plumbing.** The SEO side mirrors the
+speed side file for file — `bin/seo.js` → `src/seo-collect.js` →
+`src/seo.js` → `analysis/seo-prompt.md` + `seo-schema.json` →
+`validarAnalisisSeo` → `report/seo-template.js` — and reuses `page.js`,
+`infra.js`, `util.js` and the report CSS. A prospect picks one; they are
+sold separately.
+
+The SEO audit runs 22 checks in four groups (6 crawl/index · 4 duplicates ·
+5 metadata · 7 rich results), needs no API key, and costs six extra HTTP
+requests. **The total is always 22**: a check that cannot be run is emitted
+as `no_medible`, never dropped, because the site publishes the number 22.
+
+Two rules specific to it, both about not inventing:
+
+- **No money, ever.** Revenue lost to SEO needs search volume and CTR by
+  position; neither is in the input. The headline is a count of failed
+  checks. `validarAnalisisSeo` rejects an analysis whose findings mention
+  currency, or promise positions or traffic.
+- **Findings are anchored to checks.** Every finding must cite the `id` of a
+  check whose state is `falla` or `aviso`. A finding about a problem the
+  audit did not measure is rejected, not warned about.
+
+False positives are the failure mode that ends the sale in the first
+sentence, so two parsing rules are load-bearing: robots.txt is evaluated
+**only** for the `User-agent: *` group (Shopify's default file ends with
+`User-agent: Nutch` + `Disallow: /`), and `alt=""` is correct on decorative
+images — only a missing `alt` attribute counts. `ProductGroup` counts as
+product schema alongside `Product`.
+
+The guarantee differs by track and must not be blurred: speed is
+`PageSpeed 85+ or refund`; SEO is `every failed check green, or refund`.
+Rankings are never guaranteed, and `que_no_promete` is a required field in
+the SEO analysis for exactly that reason.
+
+Four invariants that are load-bearing, not stylistic:
+
+- **`src/money.js` mirrors `assets/main.js`.** Same target, same coefficient,
+  same cap. The number in a client's report and the number in the site's
+  calculator must match or the whole thing reads as improvised. Change one,
+  change both.
+- **A number with no source is not published.** Collection records
+  `fuente` + `fecha` alongside every figure; `validate.js` rejects an
+  analysis whose finding lacks evidence, and warns about figures that appear
+  in the prose but not in the collected data.
+- **Missing data fails the audit rather than filling the gap.** If mobile PSI
+  fails, `collect.js` returns `estado: 'fallida'` and `report.js` refuses to
+  render. Everything unmeasurable goes into `datos_faltantes`, which the
+  report prints.
+- **Nothing reaches a prospect without human review.** No sending code exists
+  here, deliberately — that is phase 3, and the spec says not to build it
+  until this one has produced a booked call.
+
+Detection has honest limits, recorded in the output as `alcance` fields:
+apps injected by a Tag Manager are invisible, `@font-face` is only read from
+inline CSS, and competitors are supplied by hand because guessing them would
+produce false comparisons.
+
+`queue.csv`, `auditorias/`, `informes/` and `analisis/` are gitignored — they
+hold prospect emails and third-party store data.
+
+## Design system
+
+Canonical source is the Claude Design project `5cae3bfa-7493-4859-82c8-ca64d6e9d52d` (`Design System · Gabriel Arias.dc.html`, plus `Home · Gabriel Arias.dc.html` which this page implements). Those files are `.dc.html` components — a `<x-dc>` template with `{{ }}` bindings and a `DCLogic` class — not runnable web pages. Port them; do not copy the runtime.
+
+Four rules from the system that outrank visual preference:
+
+1. **Data is mono.** Every score, second, percentage and price uses `--font-mono` with `font-variant-numeric: tabular-nums`. The same number set in sans reads as a marketing promise.
+2. **State is never colour alone.** Every status badge carries an icon (`▲`, `●`, `■`) plus a text label — amber and red are near-identical under deuteranopia.
+3. **Before is red, after is green.** Fixed, never assigned to an arbitrary series. Beyond two series the order is `--brand` → `--status-warn` → `--data-neutral` → `--status-bad`.
+4. **Provenance is mandatory.** Source and date under every figure. No source, no number — the component renders an em-dash empty state instead.
+
+Dark only. `color-scheme: dark` is set and there is no light palette; do not add `prefers-color-scheme` branches.
+
+## Unpublished placeholders
+
+The page ships several deliberate empty states, each marked in the UI with an amber `▲` badge. These are not bugs and must not be filled with invented values:
+
+- PageSpeed gauge — awaits a real build-time fetch from the PageSpeed Insights API, published with a link to the public report.
+- Sprint and retainer prices (`€ —`) — awaiting a pricing decision.
+- The three stat cards, and the case-study before/after bars — awaiting figures verified against primary sources.
+- Case study slot 02 — needs client permission, both captures, and both dates.
+- Client logos column and the Cal.com embed slot.
+
+FAQ answers are marked `Placeholder.` in their copy and need review before launch.
+
+The audit CTAs currently open a `mailto:` to gabo5612@gmail.com — one per
+track, with Spanish subject and body under `cta.speedMailto` /
+`cta.seoMailto`. They become the Cal.com embed once that is set up.
+
+Two placeholders are specific to the split: the hub's dual panel shows both
+`—` for PageSpeed and `—/22` for SEO checks, and each track has one empty case
+study slot.

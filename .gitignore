@@ -1,0 +1,16 @@
+# Datos de prospectos y clientes. La cola lleva nombres y emails, y las
+# auditorías llevan el análisis de tiendas que no son tuyas: nada de esto
+# entra en un repositorio, y menos si algún día lo haces público para
+# aprovechar los minutos ilimitados de Actions.
+audit-engine/queue.csv
+audit-engine/auditorias/
+audit-engine/informes/
+audit-engine/analisis/
+
+# Claves
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store

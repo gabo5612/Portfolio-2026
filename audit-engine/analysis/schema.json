@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Análisis de auditoría — salida de la etapa ③",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "diagnostico_una_linea",
+    "coste_estimado_mensual",
+    "hallazgos",
+    "plan_3_semanas",
+    "quick_win_regalado",
+    "confianza",
+    "datos_faltantes"
+  ],
+  "properties": {
+    "idioma": {
+      "type": "string",
+      "description": "Código ISO del idioma del informe. Debe ser el del cliente.",
+      "default": "en"
+    },
+    "diagnostico_una_linea": {
+      "type": "string",
+      "description": "El titular, en el idioma del cliente. Una frase. Sin jerga.",
+      "maxLength": 200
+    },
+    "coste_estimado_mensual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supuestos", "fuente"],
+      "properties": {
+        "valor": {
+          "type": ["number", "null"],
+          "description": "Importe. null si no se conoce la facturación: NUNCA se estima."
+        },
+        "porcentaje": {
+          "type": ["number", "null"],
+          "description": "% de la facturación mensual. Siempre calculable desde el LCP."
+        },
+        "moneda": { "type": "string", "enum": ["EUR", "USD", "GBP", "CAD", "AUD"] },
+        "supuestos": { "type": "array", "items": { "type": "string" } },
+        "fuente": { "type": "string" }
+      }
+    },
+    "hallazgos": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "Máximo 5. Un informe de 20 puntos no se lee y no se vende.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "titulo", "que_pasa", "por_que_cuesta_dinero",
+          "evidencia", "que_haria", "impacto", "esfuerzo_horas"
+        ],
+        "properties": {
+          "titulo": { "type": "string", "maxLength": 90 },
+          "que_pasa": { "type": "string", "description": "2 frases, sin jerga." },
+          "por_que_cuesta_dinero": {
+            "type": "string",
+            "description": "En dinero o en conversión, nunca en milisegundos."
+          },
+          "evidencia": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["metrica", "valor", "fuente", "fecha"],
+            "description": "Sin evidencia el hallazgo no existe.",
+            "properties": {
+              "metrica": { "type": "string" },
+              "valor": { "type": "string" },
+              "fuente": { "type": "string" },
+              "fecha": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+            }
+          },
+          "que_haria": { "type": "string", "description": "La acción concreta." },
+          "impacto": { "type": "string", "enum": ["alto", "medio", "bajo"] },
+          "esfuerzo_horas": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "plan_3_semanas": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "Es literalmente el alcance del Sprint. Tres semanas, ni una más.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["semana", "objetivo", "tareas", "resultado_esperado"],
+        "properties": {
+          "semana": { "type": "integer", "minimum": 1, "maximum": 3 },
+          "objetivo": { "type": "string" },
+          "tareas": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "resultado_esperado": { "type": "string" }
+        }
+      }
+    },
+    "quick_win_regalado": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["titulo", "pasos", "mejora_estimada", "requiere_dev"],
+      "description": "La pieza psicológica clave: algo que puede aplicar hoy, solo, sin ti.",
+      "properties": {
+        "titulo": { "type": "string" },
+        "pasos": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "mejora_estimada": { "type": "string" },
+        "requiere_dev": { "type": "boolean" }
+      }
+    },
+    "que_pasa_si_no_se_arregla": {
+      "type": "string",
+      "description": "Sección 6 del informe. Consecuencia, sin dramatismo."
+    },
+    "confianza": { "type": "string", "enum": ["alta", "media", "baja"] },
+    "datos_faltantes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Todo número que no estaba en la entrada acaba aquí, no inventado."
+    }
+  }
+}

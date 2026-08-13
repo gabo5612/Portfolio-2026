@@ -1,0 +1,14 @@
+{
+  "name": "audit-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Motor de auditoría automatizada para tiendas Shopify. Cero dependencias.",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\"",
+    "audit": "node bin/audit.js",
+    "batch": "node bin/batch.js",
+    "report": "node bin/report.js"
+  }
+}
