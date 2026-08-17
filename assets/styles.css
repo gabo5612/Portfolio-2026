@@ -90,10 +90,18 @@
 /* ── Reset ──────────────────────────────────────────────── */
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+/* The plane is set on <html> alone, deliberately. <body> is not a stacking
+   context, so `.glow` — a child of body at z-index:-1 — is painted inside
+   the ROOT stacking context, in the negative-index layer that comes after
+   the canvas but before the root's in-flow descendants. A background on
+   <body> is one of those descendants, so it covered the glow completely
+   and the layer rendered as if it were not there at all. */
+html{
+  scroll-behavior:smooth;
+  background:var(--plane);
+}
 html,body{
   margin:0;padding:0;
-  background:var(--plane);
   color:var(--ink-primary);
   font-family:var(--font-ui);
   -webkit-font-smoothing:antialiased;
@@ -109,6 +117,57 @@ img,svg{max-width:100%}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+/* ── Ambient light ──────────────────────────────────────
+   The page is one flat plane of #0E1013 from top to bottom, which reads
+   as unfinished rather than as restraint. This gives it a light source:
+   a fixed brand wash at the top of the viewport, and on a mouse, a soft
+   orb that follows the cursor.
+
+   Four things keep it off the critical path:
+
+   - It is one `position:fixed` box at `z-index:-1`, painted once. It
+     lands in the root stacking context's negative layer, above the
+     canvas and below every in-flow element — no element on the page has
+     to move, gain a z-index, or become a stacking context for it. See
+     the note on the reset above for why <body> gives up its background.
+   - The orb never repaints. `main.js` writes `transform` on it and
+     nothing else, so the move is a compositor transform: no style
+     recalc on the rest of the tree, no layout, no paint.
+   - `display:none` unless the device actually has a mouse. A phone
+     never creates the layer, never runs the listener, and Lighthouse's
+     mobile emulation reports a touch pointer, so the audit sees the
+     page exactly as it was.
+   - The alphas are chosen against `--ink-muted`, the smallest and lowest
+     contrast text on the page, in the worst case both layers can produce:
+     each at full strength, stacked, under a 12px mono label. That
+     composite is #113026, on which #8A929B measures 4.57:1 — still past
+     AA, and the real figure is higher because the wash peaks above the
+     top of the viewport and never reaches full strength on screen. */
+
+.glow{
+  position:fixed;inset:0;z-index:-1;
+  pointer-events:none;overflow:hidden;
+  background:radial-gradient(760px 460px at 50% -10%,
+    rgba(16,172,112,.08), rgba(16,172,112,0) 70%);
+}
+.glow__orb{display:none}
+
+@media (hover:hover) and (pointer:fine){
+  .glow__orb{
+    display:block;
+    position:absolute;top:0;left:0;
+    width:640px;height:640px;margin:-320px 0 0 -320px;
+    border-radius:var(--r-pill);
+    background:radial-gradient(closest-side,
+      rgba(45,212,143,.10), rgba(45,212,143,0));
+    opacity:0;
+    transition:opacity 400ms var(--ease);
+  }
+  /* Promoted only once the pointer has actually moved: a session that
+     never touches the mouse should not hold a 640px layer on the GPU. */
+  .glow__orb.is-live{opacity:1;will-change:transform}
 }
 
 /* ── Skip link ──────────────────────────────────────────── */
@@ -267,7 +326,8 @@ img,svg{max-width:100%}
 }
 .lang__opt{
   display:inline-flex;align-items:center;
-  min-height:36px;padding:0 12px;
+  min-height:44px;min-width:44px;padding:0 12px;
+  justify-content:center;
   font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;
   color:var(--ink-muted);text-decoration:none;
   transition:color var(--t-hover) var(--ease),
@@ -278,6 +338,15 @@ img,svg{max-width:100%}
 
 /* ── Layout ─────────────────────────────────────────────── */
 
+/* Every auto-fit grid below reads `minmax(min(Npx,100%),1fr)`, never
+   `minmax(Npx,1fr)`. The bare form sets a HARD floor: auto-fit does not
+   collapse a track that is merely too wide, so on a 360px phone a
+   `minmax(400px,1fr)` card stayed 400px and pushed the page sideways.
+   Worse, that floor is also the grid's min-content contribution, so it
+   propagated up through the ancestors — the home page's audit CTA was
+   laid out 536px wide inside a 358px card because its own two-column
+   pair demanded 260+260+16. `min(N,100%)` lets the floor give way to
+   the available width, which is the whole point of auto-fit. */
 .shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gutter)}
 .section{padding:96px 0}
 .section--rule{border-top:1px solid var(--hairline)}
@@ -302,7 +371,7 @@ img,svg{max-width:100%}
 
 .hero{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
   gap:64px;align-items:center;
 }
 .hero__lede{
@@ -325,7 +394,7 @@ img,svg{max-width:100%}
   border-top:1px solid var(--hairline);
   border-bottom:1px solid var(--hairline);
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));
   gap:24px;
 }
 .fact{display:grid;gap:8px;align-content:start}
@@ -346,7 +415,7 @@ img,svg{max-width:100%}
 
 .film{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
   gap:24px;margin-bottom:24px;
 }
 .film__head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
@@ -383,7 +452,7 @@ img,svg{max-width:100%}
 
 .stat-row{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
   gap:24px;margin-bottom:48px;
 }
 .stat{padding:24px}
@@ -400,7 +469,7 @@ img,svg{max-width:100%}
 .calc__label{margin-bottom:32px}
 .calc__grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));
   gap:32px;align-items:start;
 }
 .calc__fields{display:grid;gap:24px}
@@ -489,7 +558,7 @@ img,svg{max-width:100%}
 
 .tracks{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));
   gap:24px;
 }
 .track{padding:32px;display:grid;gap:24px;align-content:start}
@@ -567,11 +636,16 @@ img,svg{max-width:100%}
 .anatomy__title{font-size:20px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px}
 .anatomy__text{margin:0;font-size:16px;line-height:1.6;color:var(--ink-secondary);max-width:68ch}
 .anatomy--flat{margin-bottom:0}
-.code{font-family:var(--font-mono);font-size:14px;color:var(--ink-primary)}
+/* `overflow-wrap:anywhere`, not `break-word`: only the former lowers the
+   element's min-content size, and that is what the fix has to reach here.
+   `/collections/y/products/x` set in mono is 210px on its own, so as an
+   unbreakable token it set the floor for the whole 1fr column and pushed
+   the SEO page's anatomy list off a 320px screen. */
+.code{font-family:var(--font-mono);font-size:14px;color:var(--ink-primary);overflow-wrap:anywhere}
 
 .provenance{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
   gap:32px;
   padding-top:32px;
   border-top:1px solid var(--hairline);
@@ -582,7 +656,7 @@ img,svg{max-width:100%}
 
 .plans{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));
   gap:24px;
 }
 .plan{padding:32px;display:grid;gap:24px;align-content:start;position:relative}
@@ -627,7 +701,7 @@ img,svg{max-width:100%}
 .case__slot{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted)}
 .case__cols{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
   gap:32px;
 }
 .case__col-label{margin-bottom:8px}
@@ -671,7 +745,7 @@ img,svg{max-width:100%}
 .steps{
   list-style:none;margin:0;padding:0;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
   gap:24px;
 }
 .step{padding:24px;display:grid;gap:12px;align-content:start}
@@ -734,7 +808,7 @@ img,svg{max-width:100%}
 
 .vitals{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));
   gap:2px;
   background:var(--hairline);
   border:1px solid var(--hairline);
@@ -773,7 +847,7 @@ img,svg{max-width:100%}
 
 .reads__panel{
   display:none;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
   gap:24px;
 }
 #tpl-product:checked  ~ .reads__panel[data-tpl="product"],
@@ -881,7 +955,7 @@ img,svg{max-width:100%}
   max-width:var(--shell);margin:0 auto;
   padding:48px var(--gutter);
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));
   gap:32px;align-items:start;
 }
 .foot-brand{display:grid;gap:8px}
@@ -897,9 +971,54 @@ img,svg{max-width:100%}
 .foot-legal{font-size:14px;color:var(--ink-muted)}
 .foot-copy{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);text-align:right}
 
-/* The system's 320ms enter token is deliberately unused: a reveal-on-scroll
-   would need a render-blocking .js flag in <head> to avoid a flash of
-   hidden content, and nothing on this page may depend on JS to be legible. */
+/* ── Entrances ──────────────────────────────────────────
+   The 320ms enter token, spent at last — and still with no JavaScript
+   anywhere near it, because the old objection stands: a reveal driven by
+   a script needs a render-blocking flag in <head> to avoid a flash of
+   hidden content, and nothing here may depend on JS to be legible.
+
+   Two mechanisms, both pure CSS:
+
+   - `.enter` is a plain time-based animation on the first screen. It
+     starts the moment the stylesheet applies, so there is no window in
+     which the markup is hidden and nothing has been told to show it.
+   - `.reveal` is scroll-driven, via `animation-timeline: view()`. No
+     observer, no scroll listener, no main-thread work at all — the
+     compositor drives it. Firefox has not shipped it, so the `@supports`
+     guard leaves those visitors with the static page, which is the same
+     page minus one flourish.
+
+   Both live inside `prefers-reduced-motion: no-preference`, not inside
+   the blanket `reduce` override at the top of this file. That override
+   works by forcing `animation-duration` to nothing, and a view timeline
+   ignores duration entirely — under `reduce` it would have left every
+   `.reveal` block stuck at `from`, which is opacity 0. */
+
+@keyframes enter{
+  from{opacity:0;transform:translate3d(0,14px,0)}
+  to{opacity:1;transform:none}
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .enter{animation:enter var(--t-enter) var(--ease) both}
+  .enter--2{animation-delay:60ms}
+  .enter--3{animation-delay:120ms}
+  .enter--4{animation-delay:180ms}
+  .enter--5{animation-delay:240ms}
+
+  @supports (animation-timeline:view()){
+    /* A fixed 220px of travel, not a percentage: a percentage of `entry`
+       is a percentage of the block's own height, so a tall section would
+       still be half transparent with its heading well up the screen. */
+    .reveal{
+      animation-name:enter;
+      animation-fill-mode:both;
+      animation-timing-function:var(--ease);
+      animation-timeline:view();
+      animation-range:entry 0 entry 220px;
+    }
+  }
+}
 
 /* ── Variants used by the inner pages ───────────────────── */
 
@@ -925,8 +1044,8 @@ img,svg{max-width:100%}
 .steps--plan{margin-bottom:48px}
 .step--active{border-color:var(--brand)}
 
-.plans--pair{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.cases--pair{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.plans--pair{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+.cases--pair{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
 .case__link{
   font-size:14px;text-decoration:none;color:var(--ink-secondary);
   border-bottom:1px solid var(--hairline-strong);
@@ -935,12 +1054,20 @@ img,svg{max-width:100%}
 .case__link:hover{color:var(--ink-primary)}
 
 .cta__head{display:grid;gap:16px;justify-items:center}
+/* Flex, not the auto-fit grid every other pair on the site uses, and the
+   reason is specific to where it sits. `.cta` is a grid with
+   `justify-items:center`, so this box is sized intrinsically rather than
+   handed the card's width. Asked for its min-content, an auto-fit grid
+   still places both items — into an implicit second track — and answers
+   with the SUM: 205 + 16 + 189 = 411px, inside a 308px card. That became
+   the track's base size, so the whole CTA hung 100px off the right edge
+   of every phone. A wrapping flex row answers with the widest item, 205,
+   which fits. `flex:1 1 260px` reproduces the two-up/one-up behaviour. */
 .cta__pair{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  display:flex;flex-wrap:wrap;
   gap:16px;width:100%;max-width:720px;
 }
-.cta__option{display:grid;gap:12px;justify-items:center}
+.cta__option{flex:1 1 260px;display:grid;gap:12px;justify-items:center}
 .cta__btn{width:100%}
 .cta__cross{margin:0;font-size:14px;color:var(--ink-muted)}
 
@@ -971,6 +1098,47 @@ img,svg{max-width:100%}
   .foot-copy{text-align:left}
 }
 
+/* ── Touch targets ──────────────────────────────────────
+   Buttons were already built to 44px; the standalone text links were
+   not — they are as tall as their own line box, 18–23px, which is half
+   a fingertip. Two different fixes, because two different problems:
+
+   - The links that stand alone with room around them get the hit area
+     they lack from a transparent pseudo-element. Nothing moves: the
+     underline stays exactly where it was drawn, on the pixel it was
+     drawn on, and the tap area grows outwards over margin that was
+     empty anyway.
+   - The footer column cannot use that trick. Its links sit 12px apart,
+     so 44px areas would overlap each other by 14px and the top half of
+     one link would fire the one above it. There the row itself has to
+     grow, so the gap closes and each link becomes a 44px row.
+
+   Both are inside `pointer:coarse`. A mouse is precise enough already
+   and the desktop footer keeps its tighter rhythm. */
+
+@media (pointer:coarse){
+  .brand,.link-quiet,.track__aside,.case__link,.foot-brand__name{position:relative}
+  .brand::after,.link-quiet::after,.track__aside::after,
+  .case__link::after,.foot-brand__name::after{
+    content:"";position:absolute;
+    left:0;right:0;top:50%;
+    height:44px;transform:translateY(-50%);
+  }
+  .foot-links{gap:0}
+  .foot-links a{min-height:44px;display:flex;align-items:center}
+
+  /* The inline nav survives down to 720px, and a tablet in that band is a
+     touch device. 28px of gap between links leaves 14px a side to claim,
+     so these get horizontal reach as well as vertical — "SEO" and "FAQ"
+     are 24px wide on their own. */
+  .nav__link{position:relative}
+  .nav__link::after{
+    content:"";position:absolute;
+    left:-10px;right:-10px;top:50%;
+    height:44px;transform:translateY(-50%);
+  }
+}
+
 @media (max-width:520px){
   :root{--gutter:16px}
   /* Brand line, switch and CTA share one row: the role strapline and the
@@ -981,4 +1149,16 @@ img,svg{max-width:100%}
   .film__controls{gap:12px}
   .film__readout{min-width:0}
   .bar__label{width:52px}
+
+  /* One row, three things, 288px of it on the narrowest phone still sold:
+     brand, language switch, CTA. At the desktop sizes the CTA hung ~40px
+     past the right edge — the header was the one place on the site that
+     overflowed before any of this. Everything here buys those pixels back
+     from padding rather than from meaning, so all three survive intact.
+     The switch drops to 36×44: still well past the 24×24 that WCAG 2.5.8
+     asks of it, and the only alternative was cutting the CTA label. */
+  .site-header__inner{gap:12px}
+  .nav{gap:8px}
+  .lang__opt{min-width:0;padding:0 10px}
+  .nav .btn--sm{padding:0 14px;font-size:13px}
 }

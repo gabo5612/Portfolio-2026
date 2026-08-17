@@ -24,6 +24,11 @@
 </head>
 <body>
 
+<!-- Ambient light. One fixed layer behind everything; the orb inside it
+     follows the mouse and is display:none without one. styles.css explains
+     why it costs a phone nothing. -->
+<div class="glow" aria-hidden="true"><span class="glow__orb" data-glow></span></div>
+
 <a class="skip" href="#main" data-i18n="nav.skip">Skip to content</a>
 
 <header class="site-header is-solid">
@@ -51,17 +56,17 @@
   <!-- ── Hero ─────────────────────────────────────────────────────────── -->
   <section class="section hero">
     <div>
-      <div class="mono-label hero__eyebrow" data-i18n="se.eyebrow">Shopify technical SEO · 30-day sprint</div>
-      <h1 class="h1" data-i18n="se.title">Shopify's defaults are built for shopping, not for indexing.</h1>
-      <p class="hero__lede" data-i18n="se.lede">Twenty-two technical checks decide whether Google can crawl, index and read your store correctly. Your store passes an unknown number of them. The free audit runs all twenty-two and tells you which.</p>
-      <div class="hero__actions">
+      <div class="mono-label hero__eyebrow enter" data-i18n="se.eyebrow">Shopify technical SEO · 30-day sprint</div>
+      <h1 class="h1 enter" data-i18n="se.title">Shopify's defaults are built for shopping, not for indexing.</h1>
+      <p class="hero__lede enter enter--2" data-i18n="se.lede">Twenty-two technical checks decide whether Google can crawl, index and read your store correctly. Your store passes an unknown number of them. The free audit runs all twenty-two and tells you which.</p>
+      <div class="hero__actions enter enter--3">
         <a class="btn btn--primary btn--lg" href="#audit" data-i18n="se.cta">Get your free SEO audit</a>
         <a class="link-quiet" href="#checks" data-i18n="se.link">See the 22 checks ↓</a>
       </div>
-      <p class="hero__note" data-i18n="se.note">No keyword research, no backlinks, no promises about positions. Technical only — the part that is measurable from outside.</p>
+      <p class="hero__note enter enter--4" data-i18n="se.note">No keyword research, no backlinks, no promises about positions. Technical only — the part that is measurable from outside.</p>
     </div>
 
-    <div class="card gauge">
+    <div class="card gauge enter enter--3">
       <div class="mono-label gauge__label" data-i18n="se.gaugeLabel">This site · checks passed</div>
       <div class="score">—<span class="score__total">/22</span></div>
       <span class="badge badge--warn badge--md" data-i18n="se.gaugeBadge">▲ Awaiting first measured run</span>
@@ -70,7 +75,7 @@
   </section>
 
   <!-- ── Facts strip ──────────────────────────────────────────────────── -->
-  <section class="facts" data-i18n-aria="facts.aria" aria-label="At a glance">
+  <section class="facts reveal" data-i18n-aria="facts.aria" aria-label="At a glance">
     <div class="fact">
       <div class="mono-label" data-i18n="se.checksRun">Checks run</div>
       <div class="fact__value">22</div>
@@ -104,7 +109,7 @@
     <h2 class="h2 section__title" data-i18n="se.readsTitle">Your product page, as Google reads it</h2>
     <p class="section__lede" data-i18n="se.readsLede">Same page, same theme. On the left, the fields a crawler finds on a default Shopify template. On the right, the same fields after the sprint. Nothing here is content work — it is what the page declares about itself.</p>
 
-    <div class="reads">
+    <div class="reads reveal">
       <input class="reads__radio" type="radio" name="tpl" id="tpl-product" checked>
       <input class="reads__radio" type="radio" name="tpl" id="tpl-collection">
       <input class="reads__radio" type="radio" name="tpl" id="tpl-home">
@@ -219,7 +224,7 @@
     <h2 class="h2 section__title" data-i18n="se.defTitle">Five things Shopify does by default that Google reads badly</h2>
     <p class="section__lede" data-i18n="se.defLede">Every one of these is verifiable on your own store in a browser, right now. None of them is a claim about your rankings.</p>
 
-    <ol class="anatomy anatomy--flat">
+    <ol class="anatomy anatomy--flat reveal">
       <li class="anatomy__item">
         <span class="anatomy__n">01</span>
         <div>
@@ -276,7 +281,7 @@
       <span class="legend__note" data-i18n="se.legendNote">Not applicable and unmeasurable do not count against the health percentage. A single-market store without hreflang has no deficiency — it has a check that does not apply to it.</span>
     </div>
 
-    <div class="checks">
+    <div class="checks reveal">
       <div class="checks__group">
         <div class="checks__head">
           <div>
@@ -352,7 +357,7 @@
     <h2 class="h2 section__title" data-i18n="se.planTitle">Four weeks, and the fourth one is the proof</h2>
     <p class="section__lede" data-i18n="se.planLede">A schema change nobody has re-crawled is deployed, not finished. The last week exists because the work is not done until Google has come back and I can show you the before and after.</p>
 
-    <ol class="steps steps--plan">
+    <ol class="steps steps--plan reveal">
       <li class="card step">
         <span class="step__n step__n--active">01</span>
         <div class="step__title" data-i18n="groups.crawl">Crawling and indexing</div>
@@ -379,7 +384,7 @@
       </li>
     </ol>
 
-    <div class="plans plans--pair">
+    <div class="plans plans--pair reveal">
       <div class="card plan">
         <div>
           <div class="mono-label plan__kind" data-i18n="se.auditKind">SEO audit</div>
@@ -426,7 +431,7 @@
   <section class="section section--rule" id="faq">
     <div class="mono-label section__eyebrow" data-i18n="faq.eyebrow">FAQ</div>
     <h2 class="h2 section__title section__title--last" data-i18n="faq.title">Before you ask</h2>
-    <div class="faq">
+    <div class="faq reveal">
       <details class="faq__item">
         <summary class="faq__q"><span data-i18n="se.q1">Will this get me to page one?</span><span class="faq__sign" aria-hidden="true"></span></summary>
         <p class="faq__a" data-i18n="se.a1">Placeholder. No, and anyone who promises it is selling something else. This makes your store correctly crawlable, indexable and readable. What you rank for after that depends on your content and your market — neither of which I am touching.</p>
@@ -448,7 +453,7 @@
 
   <!-- ── Audit CTA ────────────────────────────────────────────────────── -->
   <section class="section section--rule" id="audit">
-    <div class="card cta">
+    <div class="card cta reveal">
       <h2 class="h2 cta__title" data-i18n="se.ctaTitle">Find out how many of the 22 you are passing</h2>
       <p class="cta__lede" data-i18n="se.ctaLede">All 22 checks, findings anchored to the ones that fail, and a fix you can apply yourself. Within 48 hours, no call required.</p>
       <a class="btn btn--primary btn--lg" data-i18n="se.cta" data-i18n-href="cta.seoMailto" href="mailto:gabrielariasdev@gmail.com?subject=Free%20Shopify%20SEO%20audit&amp;body=Store%20URL%3A%20">Get your free SEO audit</a>

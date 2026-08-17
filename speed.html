@@ -24,6 +24,11 @@
 </head>
 <body>
 
+<!-- Ambient light. One fixed layer behind everything; the orb inside it
+     follows the mouse and is display:none without one. styles.css explains
+     why it costs a phone nothing. -->
+<div class="glow" aria-hidden="true"><span class="glow__orb" data-glow></span></div>
+
 <a class="skip" href="#main" data-i18n="nav.skip">Skip to content</a>
 
 <header class="site-header is-solid">
@@ -51,17 +56,17 @@
   <!-- ── Hero ─────────────────────────────────────────────────────────── -->
   <section class="section hero">
     <div>
-      <div class="mono-label hero__eyebrow" data-i18n="sp.eyebrow">Shopify performance · 30-day sprint</div>
-      <h1 class="h1" data-i18n="sp.title">Your store loses revenue on every second it takes to load.</h1>
-      <p class="hero__lede" data-i18n="sp.lede">In 30 days I get your PageSpeed above 85 and your mobile conversion up 10–25%. Fixed scope, fixed price, measured before and after — on your devices, together.</p>
-      <div class="hero__actions">
+      <div class="mono-label hero__eyebrow enter" data-i18n="sp.eyebrow">Shopify performance · 30-day sprint</div>
+      <h1 class="h1 enter" data-i18n="sp.title">Your store loses revenue on every second it takes to load.</h1>
+      <p class="hero__lede enter enter--2" data-i18n="sp.lede">In 30 days I get your PageSpeed above 85 and your mobile conversion up 10–25%. Fixed scope, fixed price, measured before and after — on your devices, together.</p>
+      <div class="hero__actions enter enter--3">
         <a class="btn btn--primary btn--lg" href="#audit" data-i18n="sp.cta">Get your free 48h audit</a>
         <a class="link-quiet" href="#numbers" data-i18n="sp.link">See what a second costs ↓</a>
       </div>
-      <p class="hero__note" data-i18n="hero.noteCall">No call required. You get a Loom and a written report.</p>
+      <p class="hero__note enter enter--4" data-i18n="hero.noteCall">No call required. You get a Loom and a written report.</p>
     </div>
 
-    <div class="card gauge">
+    <div class="card gauge enter enter--3">
       <div class="mono-label gauge__label" data-i18n="gauge.label">This site · PageSpeed mobile</div>
       <svg class="gauge__dial" width="200" height="200" viewBox="0 0 128 128" role="img" data-i18n-aria="gauge.alt" aria-label="No verified PageSpeed score published yet">
         <circle cx="64" cy="64" r="54" fill="none" stroke="var(--hairline)" stroke-width="8"></circle>
@@ -73,7 +78,7 @@
   </section>
 
   <!-- ── Facts strip ──────────────────────────────────────────────────── -->
-  <section class="facts" data-i18n-aria="facts.aria" aria-label="At a glance">
+  <section class="facts reveal" data-i18n-aria="facts.aria" aria-label="At a glance">
     <div class="fact">
       <div class="mono-label" data-i18n="facts.turnaround">Turnaround</div>
       <div class="fact__value" data-i18n="facts.turnaroundValue">48 h</div>
@@ -105,7 +110,7 @@
     <h2 class="h2 section__title" data-i18n="film.title">Three seconds in, one of them is still blank</h2>
     <p class="section__lede" data-i18n="film.lede">Drag the scrubber, or focus it and use ← →. This is what your customer sees while the page is still thinking.</p>
 
-    <div class="film">
+    <div class="film reveal">
       <div>
         <div class="film__head">
           <span class="mono-label mono-label--bad" data-i18n="film.beforeLcp">■ Before · 4.8s LCP</span>
@@ -140,7 +145,7 @@
       <span class="film__readout" data-time>3.0s</span>
     </div>
 
-    <div class="vitals">
+    <div class="vitals reveal">
       <div class="vital">
         <div class="mono-label" data-i18n="sp.lcpTarget">LCP · target ≤ 2.5 s</div>
         <div class="vital__value">—</div>
@@ -170,7 +175,7 @@
     <h2 class="h2 section__title" data-i18n="numbers.title">Slow pages are a revenue line, not an IT ticket</h2>
     <p class="section__lede" data-i18n="sp.numbersLede">Put your own numbers in. The formula is printed with the cap inside it and the coefficient is cited, so your developer can check the arithmetic in thirty seconds.</p>
 
-    <div class="card calc">
+    <div class="card calc reveal">
       <div class="mono-label calc__label" data-i18n="calc.label">What it costs you</div>
       <div class="calc__grid">
         <div class="calc__fields">
@@ -197,7 +202,7 @@
       </div>
     </div>
 
-    <div class="stat-row stat-row--after">
+    <div class="stat-row stat-row--after reveal">
       <div class="card card--dashed stat">
         <div class="mono-label stat__label" data-i18n="stats.conversion">Conversion per 100ms</div>
         <div class="stat__value">—</div>
@@ -222,7 +227,7 @@
     <h2 class="h2 section__title" data-i18n="sp.planTitle">Three weeks of work, measured at both ends</h2>
     <p class="section__lede" data-i18n="sp.planLede">The scope is the plan in your free audit, unchanged. Work happens on a duplicated theme and nothing goes live until you approve the diff.</p>
 
-    <ol class="steps steps--plan">
+    <ol class="steps steps--plan reveal">
       <li class="card step step--active">
         <span class="step__n step__n--active">00</span>
         <div class="step__title" data-i18n="sp.w0">Baseline</div>
@@ -249,7 +254,7 @@
       </li>
     </ol>
 
-    <div class="plans">
+    <div class="plans reveal">
       <div class="card plan">
         <div>
           <div class="mono-label plan__kind" data-i18n="sp.auditKind">Speed audit</div>
@@ -308,7 +313,7 @@
     <h2 class="h2 section__title" data-i18n="cases.title">Context, intervention, measured result</h2>
     <p class="section__lede" data-i18n="sp.casesLede">Two slots, both waiting on real measurements. Public-store teardowns are labelled as teardowns — an unaffiliated demo is worth more than a fabricated client.</p>
 
-    <div class="cases">
+    <div class="cases reveal">
       <article class="card case">
         <div class="case__head">
           <span class="badge badge--outline" data-i18n="cases.badge">Public store teardown — unaffiliated demo</span>
@@ -345,7 +350,7 @@
   <section class="section section--rule" id="faq">
     <div class="mono-label section__eyebrow" data-i18n="faq.eyebrow">FAQ</div>
     <h2 class="h2 section__title section__title--last" data-i18n="faq.title">Before you ask</h2>
-    <div class="faq">
+    <div class="faq reveal">
       <details class="faq__item">
         <summary class="faq__q"><span data-i18n="faq.q3">What if I already have a developer?</span><span class="faq__sign" aria-hidden="true"></span></summary>
         <p class="faq__a" data-i18n="faq.a3">Placeholder. Either I hand over a prioritised diff and they ship it, or I ship it and they review. Both work, and the second is faster.</p>
@@ -371,7 +376,7 @@
 
   <!-- ── Audit CTA ────────────────────────────────────────────────────── -->
   <section class="section section--rule" id="audit">
-    <div class="card cta">
+    <div class="card cta reveal">
       <h2 class="h2 cta__title" data-i18n="sp.ctaTitle">Find out what your speed is costing you</h2>
       <p class="cta__lede" data-i18n="sp.ctaLede">A three-minute Loom and a written report, within 48 hours. No call required.</p>
       <a class="btn btn--primary btn--lg" data-i18n="cta.button" data-i18n-href="cta.speedMailto" href="mailto:gabrielariasdev@gmail.com?subject=Free%20Shopify%20speed%20audit&amp;body=Store%20URL%3A%20">Get your free audit</a>

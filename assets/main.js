@@ -44,6 +44,50 @@
     sync();
   })();
 
+  /* ── Cursor glow ───────────────────────────────────────
+     Moves the ambient orb behind the page with the mouse. The only thing
+     this ever writes is `transform` on one absolutely-positioned element
+     that nothing else depends on, so a move costs a compositor transform
+     and nothing more — no style recalc on the tree, no layout, no paint.
+
+     Three gates before a single listener is bound: the element has to be
+     there, the visitor has to have asked for motion, and the device has
+     to have a real pointer. A phone fails the third, which is why this
+     costs a mobile visit exactly nothing. */
+
+  (function cursorGlow() {
+    var orb = document.querySelector('[data-glow]');
+    if (!orb) return;
+    if (reduceMotion.matches) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    var x = 0, y = 0, queued = false, live = false;
+
+    function paint() {
+      queued = false;
+      orb.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+      if (!live) { live = true; orb.classList.add('is-live'); }
+    }
+
+    /* One frame per frame. pointermove fires far faster than the display
+       refreshes, and without this the same transform would be written
+       three or four times between two paints. */
+    window.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      x = e.clientX;
+      y = e.clientY;
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(paint);
+    }, { passive: true });
+
+    // Pointer out of the window: fade out rather than freeze at the edge.
+    document.addEventListener('mouseleave', function () {
+      live = false;
+      orb.classList.remove('is-live');
+    });
+  })();
+
   /* ── Load filmstrip ────────────────────────────────────
      Scrubber value is tenths of a second, 0–4.5s. A frame's block
      appears once the clock passes its milestone. */

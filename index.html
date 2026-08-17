@@ -24,6 +24,11 @@
 </head>
 <body>
 
+<!-- Ambient light. One fixed layer behind everything; the orb inside it
+     follows the mouse and is display:none without one. styles.css explains
+     why it costs a phone nothing. -->
+<div class="glow" aria-hidden="true"><span class="glow__orb" data-glow></span></div>
+
 <a class="skip" href="#main" data-i18n="nav.skip">Skip to content</a>
 
 <header class="site-header" data-header>
@@ -54,17 +59,17 @@
   <!-- ── Hero ─────────────────────────────────────────────────────────── -->
   <section class="section hero">
     <div>
-      <div class="mono-label hero__eyebrow" data-i18n="hero.eyebrow">Shopify · two sprints, sold separately</div>
-      <h1 class="h1 h1--long" data-i18n="hero.title">Two things quietly cost your store money: how slowly it loads, and how badly Google reads it.</h1>
-      <p class="hero__lede" data-i18n="hero.lede">Both are measurable from outside, in an afternoon. Pick the one that is your problem and I will send you the measurement within 48 hours — free, no call, yours to keep.</p>
-      <div class="hero__actions">
+      <div class="mono-label hero__eyebrow enter" data-i18n="hero.eyebrow">Shopify · two sprints, sold separately</div>
+      <h1 class="h1 h1--long enter" data-i18n="hero.title">Two things quietly cost your store money: how slowly it loads, and how badly Google reads it.</h1>
+      <p class="hero__lede enter enter--2" data-i18n="hero.lede">Both are measurable from outside, in an afternoon. Pick the one that is your problem and I will send you the measurement within 48 hours — free, no call, yours to keep.</p>
+      <div class="hero__actions enter enter--3">
         <a class="btn btn--primary btn--lg" href="#tracks" data-i18n="hero.cta">See both, side by side ↓</a>
         <a class="link-quiet" href="#report" data-i18n="hero.link">What the free audit contains</a>
       </div>
-      <p class="hero__note" data-i18n="hero.note">One operator, Shopify only. Each sprint is 30 days with a written guarantee.</p>
+      <p class="hero__note enter enter--4" data-i18n="hero.note">One operator, Shopify only. Each sprint is 30 days with a written guarantee.</p>
     </div>
 
-    <div class="card dual">
+    <div class="card dual enter enter--3">
       <div class="mono-label dual__head" data-i18n="dual.label">This site, measured by its own tools</div>
       <div class="dual__grid">
         <div class="dual__cell">
@@ -87,7 +92,7 @@
   </section>
 
   <!-- ── Facts strip ──────────────────────────────────────────────────── -->
-  <section class="facts" data-i18n-aria="facts.aria" aria-label="At a glance">
+  <section class="facts reveal" data-i18n-aria="facts.aria" aria-label="At a glance">
     <div class="fact">
       <div class="mono-label" data-i18n="facts.turnaround">Turnaround</div>
       <div class="fact__value" data-i18n="facts.turnaroundValue">48 h</div>
@@ -116,7 +121,7 @@
     <h2 class="h2 section__title" data-i18n="tracks.title">Both demonstrated here, before you give me anything</h2>
     <p class="section__lede" data-i18n="tracks.lede">Neither of these is a pitch you have to take on trust. Drag the scrubber; read the check list. Then decide which of the two is costing you more.</p>
 
-    <div class="tracks">
+    <div class="tracks reveal">
 
       <!-- Track 01 · speed -->
       <article class="card track">
@@ -234,7 +239,7 @@
     <h2 class="h2 section__title" data-i18n="report.title">What lands in your inbox in 48 hours</h2>
     <p class="section__lede" data-i18n="report.lede">Not a PDF attachment. A link to a page on this domain that loads in under half a second — a consultant who emails you an 8 MB file has already answered your question. You pick one track; the shape of the report is the same for both.</p>
 
-    <ol class="anatomy">
+    <ol class="anatomy reveal">
       <li class="anatomy__item">
         <span class="anatomy__n">01</span>
         <div>
@@ -287,7 +292,7 @@
       </li>
     </ol>
 
-    <div class="provenance">
+    <div class="provenance reveal">
       <div class="provenance__item">
         <div class="mono-label" data-i18n="prov.l1">Measured by</div>
         <p data-i18n="prov.p1">PageSpeed Insights for lab data and the CrUX History API for what your real users have been seeing. On the SEO track, your store's own responses — no API keys, nothing you have to grant me.</p>
@@ -309,7 +314,7 @@
     <h2 class="h2 section__title" data-i18n="cases.title">Context, intervention, measured result</h2>
     <p class="section__lede" data-i18n="cases.lede">Two slots, one per track, both waiting on real measurements. Public-store teardowns are labelled as teardowns — an unaffiliated demo is worth more than a fabricated client.</p>
 
-    <div class="cases cases--pair">
+    <div class="cases cases--pair reveal">
       <article class="card card--dashed case case--empty">
         <span class="mono-label" data-i18n="cases.speedSlot">Speed · slot 01 · empty</span>
         <p class="case__text" data-i18n="cases.speedText">Reserved for the first paid speed sprint. Publishing it needs four things: the client's permission, the before capture, the after capture, and the date of each.</p>
@@ -327,7 +332,7 @@
   <section class="section section--rule">
     <div class="mono-label section__eyebrow" data-i18n="process.eyebrow">Process</div>
     <h2 class="h2 section__title section__title--last" data-i18n="process.title">How this works, either track</h2>
-    <ol class="steps">
+    <ol class="steps reveal">
       <li class="card step">
         <span class="step__n step__n--active">01</span>
         <div class="step__title" data-i18n="process.t1">Free audit</div>
@@ -357,7 +362,7 @@
 
   <!-- ── About ────────────────────────────────────────────────────────── -->
   <section class="section section--rule" id="about">
-    <div class="about">
+    <div class="about reveal">
       <div class="mono-label about__eyebrow" data-i18n="about.eyebrow">About</div>
       <h2 class="h2 about__title">Gabriel Arias</h2>
       <p class="about__text" data-i18n="about.p1">Building and shipping websites since 2014, the last years of it inside ecommerce, where the difference between a fast page and a slow one shows up in the checkout numbers rather than in a report.</p>
@@ -370,7 +375,7 @@
   <section class="section section--rule" id="faq">
     <div class="mono-label section__eyebrow" data-i18n="faq.eyebrow">FAQ</div>
     <h2 class="h2 section__title section__title--last" data-i18n="faq.title">Before you ask</h2>
-    <div class="faq">
+    <div class="faq reveal">
       <details class="faq__item">
         <summary class="faq__q"><span data-i18n="faq.q1">Which one do I need?</span><span class="faq__sign" aria-hidden="true"></span></summary>
         <p class="faq__a" data-i18n="faq.a1">Placeholder. If you have traffic that is not converting, start with speed. If you have a catalogue that Google barely shows, start with SEO. Both free audits are free — take the one you are less sure about.</p>
@@ -396,7 +401,7 @@
 
   <!-- ── Audit CTA ────────────────────────────────────────────────────── -->
   <section class="section section--rule" id="audit">
-    <div class="card cta">
+    <div class="card cta reveal">
       <div class="cta__head">
         <h2 class="h2 cta__title" data-i18n="cta.title">Pick the one that is costing you more</h2>
         <p class="cta__lede" data-i18n="cta.lede">Either audit is free, takes 48 hours, needs nothing but your store URL, and arrives without a call attached.</p>
